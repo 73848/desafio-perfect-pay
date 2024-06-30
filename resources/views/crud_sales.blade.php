@@ -4,7 +4,7 @@
     <h1>Adicionar / Editar Venda</h1>
     <div class='card'>
         <div class='card-body'>
-            <form>
+            <form >
                 <h5>Informações do cliente</h5>
                 <div class="form-group">
                     <label for="name">Nome do cliente</label>
@@ -23,7 +23,9 @@
                     <label for="product">Produto</label>
                     <select id="product" class="form-control">
                         <option selected>Escolha...</option>
-                        <option>...</option>
+                        @foreach ($products as $product)
+                        <option>{{$product->name}}</option>
+                        @endforeach
                     </select>
                 </div>
                 <div class="form-group">

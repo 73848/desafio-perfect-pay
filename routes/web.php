@@ -1,6 +1,9 @@
 <?php
 
+use App\Models\Product;
+use App\Http\Controllers\PassingData;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,9 +22,15 @@ Telas para ver o funcionamento sem dados
 Route::get('/', function () {
     return view('dashboard');
 });
-Route::get('/sales', function () {
-    return view('crud_sales');
-});
+Route::get('/sales', [PassingData::class, 'index']);
 Route::get('/products', function () {
     return view('crud_products');
 });
+
+/*
+Adicionar / editar produto
+*/
+
+Route::post('/products',[ProductController::class, 'create']);
+
+
