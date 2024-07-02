@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ClientController;
 use App\Models\Product;
 use App\Http\Controllers\PassingData;
 use Illuminate\Support\Facades\Route;
@@ -17,15 +18,24 @@ use App\Http\Controllers\ProductController;
 */
 
 /*
-Telas para ver o funcionamento sem dados
+Passando os dados para o dashboard
 */
-Route::get('/', function () {
-    return view('dashboard');
-});
-Route::get('/sales', [PassingData::class, 'index']);
+Route::get('/', [PassingData::class, 'passingProductsDashboard']);
+Route::get('/sales', [PassingData::class, 'passingProductsSales']);
+
 Route::get('/products', function () {
     return view('crud_products');
 });
+
+
+
+/*
+Adicionar / logar cliente
+*/
+Route::post('/register', [ClientController::class, 'create']);
+
+
+
 
 /*
 Adicionar / editar produto

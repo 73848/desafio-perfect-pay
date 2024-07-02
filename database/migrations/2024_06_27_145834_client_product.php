@@ -15,6 +15,7 @@ return new class extends Migration
     {     // essa tabela vai ser o pivô entre a tabela table e a tabela cliente, pois eles tem um relacionamento 
         // many-to-many
         Schema::create('sales_client', function (Blueprint $table){
+            $table->id();
             $table->foreignId('product_id')->constrained();
             $table->foreignId('client_id')->constrained();
             $table->integer('quantity');

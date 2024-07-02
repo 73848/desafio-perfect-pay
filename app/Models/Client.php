@@ -14,7 +14,7 @@ class Client extends Model
         'cpf',
         'product_id'
     ];
-
+    protected $table = 'client';
     public function products()
     {
         return $this->belongsToMany(Product::class, 'client_id');

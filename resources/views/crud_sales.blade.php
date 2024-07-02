@@ -4,21 +4,35 @@
     <h1>Adicionar / Editar Venda</h1>
     <div class='card'>
         <div class='card-body'>
-            <form >
-                <h5>Informações do cliente</h5>
+            <form action="/register" method="POST">
+                @csrf
+                <h5>Cadastrando novos clientes</h5>
                 <div class="form-group">
                     <label for="name">Nome do cliente</label>
-                    <input type="text" class="form-control " id="name">
+                    <input type="text" class="form-control " name="name">
                 </div>
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="text" class="form-control" id="email">
+                    <input type="text" class="form-control" name="email">
                 </div>
                 <div class="form-group">
                     <label for="cpf">CPF</label>
-                    <input type="text" class="form-control" id="cpf" placeholder="99999999999">
+                    <input type="text" class="form-control" name="cpf" placeholder="99999999999">
                 </div>
+                <button type="submit" class="btn btn-primary">Cadastrar</button>
+                <br>
+            </form>
+            <form action="">
                 <h5 class='mt-5'>Informações da venda</h5>
+                <div class="form-group">
+                    <label for="product">Cliente</label>
+                    <select name="client" class="form-control">
+                        <option selected>Escolha...</option>
+                        @foreach ($clients as $client)
+                        <option>{{$client->name}}</option>
+                        @endforeach
+                    </select>
+                </div>
                 <div class="form-group">
                     <label for="product">Produto</label>
                     <select id="product" class="form-control">
