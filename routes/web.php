@@ -5,6 +5,7 @@ use App\Models\Product;
 use App\Http\Controllers\PassingData;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\Sales;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,29 +19,30 @@ use App\Http\Controllers\ProductController;
 */
 
 /*
-Passando os dados para o dashboard
+Passando os dados para as views
 */
 Route::get('/', [PassingData::class, 'passingProductsDashboard']);
 Route::get('/sales', [PassingData::class, 'passingProductsSales']);
-
 Route::get('/products', function () {
     return view('crud_products');
 });
 
-
-
 /*
 Adicionar / logar cliente
+Esse form fica na view de vendas
 */
 Route::post('/register', [ClientController::class, 'create']);
-
-
-
 
 /*
 Adicionar / editar produto
 */
 
 Route::post('/products',[ProductController::class, 'create']);
+
+/*
+    Cadastro de uma venda
+*/
+Route::post('/sales',[ProductController::class, 'create']);
+
 
 

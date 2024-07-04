@@ -12,12 +12,11 @@ class Client extends Model
         'name',
         'email',
         'cpf',
-        'product_id'
     ];
     protected $table = 'client';
     public function products()
     {
-        return $this->belongsToMany(Product::class, 'client_id');
+        return $this->belongsToMany(Product::class, 'sales_client', 'client_id','product_id')->withPivot('quantity', 'discount', 'status','date', 'created_at', 'update_at');
     }   
 
     

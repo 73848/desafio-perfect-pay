@@ -25,8 +25,5 @@ class ProductController extends Controller
 
         Product::create($inputForm);
         return redirect('/products');
-
-
-
       }
 }
