@@ -22,8 +22,6 @@
                 <button type="submit" class="btn btn-primary">Cadastrar</button>
                 <br>
             </form>
-
-
             <form action="/sales" method="POST">
                 @csrf
                 <h5 class='mt-5'>Informações da venda</h5>
@@ -59,7 +57,6 @@
                 </div>
                 @php
                     $status = ['Aprovado', 'Cancelado', 'Devolvido'];
-
                 @endphp
                 <div class="form-group">
                     <label for="status">Status</label>

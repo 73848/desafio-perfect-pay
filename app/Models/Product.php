@@ -8,11 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     use HasFactory;
-    protected $fillable = [
+    protected $fillable  = [
         'id',
         'client_id',
         'product_id',
         'description',
+        'quantity',
         'name',
         'date',
         'status',
@@ -21,6 +22,6 @@ class Product extends Model
     protected $table = 'products';
     public function clients() 
     {
-        return $this->belongsToMany(Client::class, 'sales_client','product_id', 'client_id' )->withPivot('quantity', 'discount', 'status','date', 'created_at', 'update_at');
+        return $this->belongsToMany(Client::class, 'client_products','product_id', 'client_id' )->withPivot('quantity', 'discount', 'status','date', 'created_at', 'update_at');
     }
 }

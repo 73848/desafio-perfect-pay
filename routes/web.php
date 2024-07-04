@@ -42,7 +42,7 @@ Route::post('/products',[ProductController::class, 'create']);
 /*
     Cadastro de uma venda
 */
-Route::post('/sales',[ProductController::class, 'create']);
+Route::post('/sales',[Sales::class, 'create']);
 
 
 

@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {     // essa tabela vai ser o pivô entre a tabela table e a tabela cliente, pois eles tem um relacionamento 
         // many-to-many
-        Schema::create('client_sales', function (Blueprint $table){
+        Schema::create('client_products', function (Blueprint $table){
             $table->foreignId('product_id')->constrained()->onDelete('cascade');
             $table->foreignId('client_id')->constrained()->onDelete('cascade');
             $table->integer('quantity');

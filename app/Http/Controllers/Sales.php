@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Client;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -19,15 +20,26 @@ class Sales extends Controller
              'status' =>   'required',
             ]
          );
+
          $inputForm[ 'client_id']= strip_tags( $inputForm[ 'client_id']);
          $inputForm[ 'product_id']= strip_tags( $inputForm[ 'product_id']);
-         $inputForm[ 'date']= strip_tags( $inputForm[ 'date']);
-         $inputForm[ 'quantity']= strip_tags( $inputForm[ 'quantity']);
-         $inputForm[ 'discount']= strip_tags( $inputForm[ 'discount']);
-         $inputForm[ 'status']= strip_tags( $inputForm[ 'status']);
+         $date= strip_tags( $inputForm[ 'date']);
+         $quantity = strip_tags( $inputForm[ 'quantity']);
+         $discount = strip_tags( $inputForm[ 'discount']);
+         $status =strip_tags( $inputForm[ 'status']);
+         
+         // manipulando o formato da data antes de inserir no db para mais dúvidas, verifique a doc do PHP sobre 
+         //a classe DateTime
+         $format = 'd/m/Y';
+         $dateFormat = \DateTime::createFromFormat($format, $date )->format('Y-m-d');
 
-        $sale = Sales::create($request->all());
-        $sale
+         $client = Client::find($inputForm['client_id']);
+         $client->products()->attach($inputForm[ 'client_id'],
+          [
+         'quantity' => $quantity, 
+         'date' => $dateFormat, 
+         'discount' => $discount,
+         'status' => $status]);
         return redirect('/sales');
     }     
 }

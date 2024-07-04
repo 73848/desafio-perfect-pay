@@ -10,7 +10,7 @@ class PassingData extends Controller
       public function passingProductsSales(){
         $products = DB::table('products')->get();
         $clients = DB::table('client')->get();
-        $sales = DB::table('sales_client')->get();
+        $sales = DB::table('client_products')->get();
         return view('crud_sales', ['products'=> $products,'clients' => $clients, 'sales' => $sales ]);
   }
       // passando produtos para minha view de crud_sales
