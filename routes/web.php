@@ -19,30 +19,29 @@ use App\Http\Controllers\Sales;
 */
 
 /*
-Passando os dados para as views
+    DASHBOARD
 */
 Route::get('/', [PassingData::class, 'passingProductsDashboard']);
-Route::get('/sales', [PassingData::class, 'passingProductsSales']);
-Route::get('/products', function () {
-    return view('crud_products');
-});
 
 /*
-Adicionar / logar cliente
-Esse form fica na view de vendas
+CLIENTES: GET/POST/UPDATE/EDIT/DELETE
 */
 Route::post('/register', [ClientController::class, 'create']);
 
 /*
-Adicionar / editar produto
+PRODUTOS:  GET/POST/UPDATE/EDIT/DELETE
 */
-
+Route::get('/products', function () {
+return view('crud_products');
+});
 Route::post('/products',[ProductController::class, 'create']);
 
 /*
-    Cadastro de uma venda
+VENDAS: GET/POST/UPDATE/EDIT/DELETE
 */
+Route::get('/sales', [PassingData::class, 'passingProductsSales']);
 Route::post('/sales',[Sales::class, 'create']);
+Route::get('/search',[PassingData::class, 'search']);
 
 
 

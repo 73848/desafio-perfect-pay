@@ -6,7 +6,7 @@
         <div class='card-body'>
             <h5 class="card-title mb-5">Tabela de vendas
                 <a href='/sales' class='btn btn-secondary float-right btn-sm rounded-pill'><i class='fa fa-plus'></i>  Nova venda</a></h5>
-            <form>
+            <form action="/search" method="GET">
                 <div class="form-row align-items-center">
                     <div class="col-sm-5 my-1">
                         <div class="input-group">
@@ -16,10 +16,8 @@
                             <select class="form-control" id="inlineFormInputName">
                                 <option>Clientes</option>
                                 @foreach ($clients as $client)
-                                <option>{{$client->name}}</option>
-                                     
+                                <option name="name" value={{$client->id}}>{{$client->name}}</option>
                                 @endforeach
-                               
                             </select>
                         </div>
                     </div>
@@ -53,48 +51,22 @@
                         Ações
                     </th>
                 </tr>
+                @foreach ($sales as $sale)
                 <tr>
                     <td>
-                        Perfect Caps
+                        {{$sale->name}}                    
                     </td>
                     <td>
-                        20/07/2019 19h15
+                        {{$sale->date}}
                     </td>
                     <td>
-                        R$ 100,00
+                        R${{$sale->price}}                  
                     </td>
                     <td>
                         <a href='' class='btn btn-primary'>Editar</a>
                     </td>
                 </tr>
-                <tr>
-                    <td>
-                        Nature Caps
-                    </td>
-                    <td>
-                        20/07/2019 19h20
-                    </td>
-                    <td>
-                        R$ 125,00
-                    </td>
-                    <td>
-                        <a href='' class='btn btn-primary'>Editar</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Libid Caps
-                    </td>
-                    <td>
-                        20/07/2019 19h45
-                    </td>
-                    <td>
-                        R$ 110,00
-                    </td>
-                    <td>
-                        <a href='' class='btn btn-primary'>Editar</a>
-                    </td>
-                </tr>
+                @endforeach
             </table>
         </div>
     </div>
@@ -102,50 +74,19 @@
         <div class='card-body'>
             <h5 class="card-title mb-5">Resultado de vendas</h5>
             <table class='table'>
-                <tr>
-                    <th scope="col">
-                        Status
-                    </th>
-                    <th scope="col">
-                        Quantidade
-                    </th>
-                    <th scope="col">
-                        Valor Total
-                    </th>
-                </tr>
-                <tr>
-                    <td>
-                        Vendidos
-                    </td>
-                    <td>
-                        100
-                    </td>
-                    <td>
-                        R$ 100,00
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Cancelados
-                    </td>
-                    <td>
-                        120
-                    </td>
-                    <td>
-                        R$ 100,00
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Devoluções
-                    </td>
-                    <td>
-                        120
-                    </td>
-                    <td>
-                        R$ 100,00
-                    </td>
-                </tr>
+                @foreach ($sales as $sale)
+                    <tr>
+                        <th scope="col">
+                            {{$sale->status}}
+                        </th>
+                        <th scope="col">
+                            {{$sale->quantity}}
+                        </th>
+                        <th scope="col">
+                            R$ {{($sale->price)-($sale->discount)}}
+                        </th>
+                    </tr>
+                @endforeach
             </table>
         </div>
     </div>
