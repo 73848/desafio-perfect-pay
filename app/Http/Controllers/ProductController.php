@@ -11,7 +11,7 @@ class ProductController extends Controller
   
     // cadastro de produto
     public function create(Request $request){
-        $inputForm = $request->validate(
+        $input = $request->validate(
            [ 
             'name' =>   'required|max:20',
             'description' =>   'required|max:55',
@@ -19,11 +19,11 @@ class ProductController extends Controller
            ]
         );
 
-        $inputForm[ 'name']= strip_tags( $inputForm[ 'name'])  ;
-        $inputForm[ 'description']= strip_tags( $inputForm[ 'description'])  ;
-        $inputForm[ 'price']= strip_tags( $inputForm[ 'price'])  ;
+        $input[ 'name']= strip_tags( $input[ 'name'])  ;
+        $input[ 'description']= strip_tags( $input[ 'description'])  ;
+        $input[ 'price']= strip_tags( $input[ 'price'])  ;
 
-        Product::create($inputForm);
+        Product::create($input);
         return redirect('/products');
       }
       public function showSales(){
@@ -49,7 +49,20 @@ class ProductController extends Controller
      }
 
       public function edit(Product $product, Request $request){
+        $input = $request->validate(
+          [ 
+           'name' =>   'required|max:20',
+           'description' =>   'required|max:55',
+           'price' =>   'required',
+          ]
+       );
 
+       $product['name'] = $input['name'];
+       $product['description'] = $input['description'];
+       $product['description'] = $input['description'];
+
+       $product->update($input);
+       return redirect('/');
       }
 
     

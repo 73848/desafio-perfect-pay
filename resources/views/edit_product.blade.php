@@ -15,6 +15,7 @@
         <div class='card-body'>
             <form action="/edit-product/{{$product->id}}" method="POST">
                 @csrf
+                @method('PUT')
                 <div class="form-group">
                     <label for="name">Nome do produto</label>
                     <input type="text" class="form-control " name="name" value="{{$product->name}}">
