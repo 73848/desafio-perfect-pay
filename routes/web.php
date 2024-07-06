@@ -21,7 +21,7 @@ use App\Http\Controllers\Sales;
 /*
     DASHBOARD
 */
-Route::get('/', [PassingData::class, 'passingProductsDashboard']);
+Route::get('/', [ProductController::class, 'showDashboard']);
 
 /*
 CLIENTES: GET/POST/UPDATE/EDIT/DELETE
@@ -32,16 +32,16 @@ Route::post('/register', [ClientController::class, 'create']);
 PRODUTOS:  GET/POST/UPDATE/EDIT/DELETE
 */
 Route::get('/products', function () {
-return view('crud_products');
-});
+return view('crud_products');});
+Route::get('/edit-product/{product}', [ProductController::class, 'showProduct']);
+Route::put('/edit-product/{product}', [ProductController::class, 'edit']);
 Route::post('/products',[ProductController::class, 'create']);
-
 /*
 VENDAS: GET/POST/UPDATE/EDIT/DELETE
 */
-Route::get('/sales', [PassingData::class, 'passingProductsSales']);
+Route::get('/sales', [ProductController::class, 'showSales']);
 Route::post('/sales',[Sales::class, 'create']);
-Route::get('/search',[PassingData::class, 'search']);
+Route::get('/search',[Sales::class, 'search']);
 
 
 

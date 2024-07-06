@@ -32,7 +32,8 @@
                     </div>
                     <div class="col-sm-1 my-1">
                         <button type="submit" class="btn btn-primary" style='padding: 14.5px 16px;'>
-                            <i class='fa fa-search'></i></button>
+                            <i class='fa fa-search'></i>
+                        </button>
                     </div>
                 </div>
             </form>
@@ -116,7 +117,7 @@
                        R$ {{$product->price}}
                     </td>
                     <td>
-                        <a href='' class='btn btn-primary'>Editar</a>
+                        <a href='/edit-product/{{$product->id}}' class='btn btn-primary'>Editar</a>
                     </td>
                 </tr>
                 @endforeach

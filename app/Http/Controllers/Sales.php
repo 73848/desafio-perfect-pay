@@ -42,4 +42,20 @@ class Sales extends Controller
          'status' => $status]);
         return redirect('/sales');
     }     
+    public function search(Request $request){
+        $inputForm = $request->validate(
+          [
+            'name'=> 'required'
+          ]
+          );
+          $inputForm[ 'name']= strip_tags( $inputForm[ 'name'])  ;
+  
+          $sales = DB::table('client_products')
+          ->join('client', 'client_products.client_id', '=', 'client.id')
+          ->join('products', 'client_products.product_id','=', 'products.id' )
+          ->select('client_products.*', 'client.name', 'products.name', 'products.price')
+          ->where('client.id', '=',  $inputForm[ 'name'])
+          ->get();  
+          return view('dashboard', ['sales' => $sales ]);
+        }
 }
