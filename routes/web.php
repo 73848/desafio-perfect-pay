@@ -35,6 +35,7 @@ Route::get('/products', function () {
 return view('crud_products');});
 Route::get('/edit-product/{product}', [ProductController::class, 'showProduct']);
 Route::put('/edit-product/{product}', [ProductController::class, 'edit']);
+Route::delete('/edit-product/{product}', [ProductController::class, 'delete']);
 Route::post('/products',[ProductController::class, 'create']);
 /*
 VENDAS: GET/POST/UPDATE/EDIT/DELETE

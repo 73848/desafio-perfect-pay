@@ -119,6 +119,13 @@
                     <td>
                         <a href='/edit-product/{{$product->id}}' class='btn btn-primary'>Editar</a>
                     </td>
+                    <td>
+                        <form action="/edit-product/{{$product->id}}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class='btn btn-danger' >Excluir</button>
+                        </form>
+                    </td>
                 </tr>
                 @endforeach
             </table>
