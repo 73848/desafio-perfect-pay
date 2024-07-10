@@ -31,17 +31,25 @@ Route::post('/register', [ClientController::class, 'create']);
 /*
 PRODUTOS:  GET/POST/UPDATE/EDIT/DELETE
 */
+
+
+
 Route::get('/products', function () {
 return view('crud_products');});
 Route::get('/edit-product/{product}', [ProductController::class, 'showProduct']);
 Route::put('/edit-product/{product}', [ProductController::class, 'edit']);
 Route::delete('/edit-product/{product}', [ProductController::class, 'delete']);
 Route::post('/products',[ProductController::class, 'create']);
+
+
+
+
 /*
 VENDAS: GET/POST/UPDATE/EDIT/DELETE
 */
 Route::get('/sales', [ProductController::class, 'showSales']);
 Route::post('/sales',[Sales::class, 'create']);
+Route::get('/edit-sale/{sale}',[Sales::class, 'dataToEditSales']);
 Route::get('/search',[Sales::class, 'search']);
 
 

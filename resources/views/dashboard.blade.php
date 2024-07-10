@@ -15,8 +15,8 @@
                             </div>
                             <select class="form-control" id="inlineFormInputName">
                                 <option>Clientes</option>
-                                @foreach ($clients as $client)
-                                <option name="name" value={{$client->id}}>{{$client->name}}</option>
+                                @foreach ($sales as $sale)
+                                <option name="name" value={{$sale->client_name}}>{{$sale->client_name}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -37,6 +37,7 @@
                     </div>
                 </div>
             </form>
+            
             <table class='table'>
                 <tr>
                     <th scope="col">
@@ -55,7 +56,7 @@
                 @foreach ($sales as $sale)
                 <tr>
                     <td>
-                        {{$sale->name}}                    
+                        {{$sale->products_name}}                    
                     </td>
                     <td>
                         {{$sale->date}}
@@ -64,7 +65,7 @@
                         R${{$sale->price}}                  
                     </td>
                     <td>
-                        <a href='' class='btn btn-primary'>Editar</a>
+                        <a href='/edit-sale/{{$sale->product_id}}' class='btn btn-primary'>Editar</a>
                     </td>
                 </tr>
                 @endforeach
@@ -107,20 +108,24 @@
                     <th scope="col">
                         Ações
                     </th>
+                    <th scope="col">
+                        
+                    </th>
                 </tr>
-                @foreach ($products as $product)
+                
+                @foreach ($sales as $sale)
                 <tr>
                     <td>
-                        {{$product->name}}
+                        {{$sale->products_name}}
                     </td>
                     <td>
-                       R$ {{$product->price}}
+                       R$ {{$sale->price}}
                     </td>
                     <td>
-                        <a href='/edit-product/{{$product->id}}' class='btn btn-primary'>Editar</a>
+                        <a href='/edit-product/{{$sale->product_id}}' class='btn btn-primary'>Editar</a>
                     </td>
                     <td>
-                        <form action="/edit-product/{{$product->id}}" method="POST">
+                        <form action="/edit-product/{{$sale->product_id}}" method="POST">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class='btn btn-danger' >Excluir</button>

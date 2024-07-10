@@ -29,19 +29,16 @@ class ProductController extends Controller
       public function showSales(){
         $products = DB::table('products')->get();
         $clients = DB::table('client')->get();
-       
         return view('crud_sales', ['products'=> $products,'clients' => $clients]);
 }     
       public function showDashboard(){
         $products = DB::table('products')->get();
-        $clients = DB::table('client')->get();
-
         $sales = DB::table('client_products')
         ->join('client', 'client_products.client_id', '=', 'client.id')
         ->join('products', 'client_products.product_id','=', 'products.id' )
-        ->select('client_products.*', 'client.name', 'products.name', 'products.price')
+        ->select('client_products.*', 'client.name as client_name','products.name as products_name', 'products.price')
         ->get();
-        return view('dashboard', ['products'=> $products,'clients' => $clients, 'sales' => $sales  ]);
+        return view('dashboard', ['products'=> $products, 'sales' => $sales  ]);
       }
 
      public function showProduct(Product $product){
