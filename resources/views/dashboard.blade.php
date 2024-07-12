@@ -90,7 +90,7 @@
                     </tr>
                 @endforeach
             </table>
-        </div>
+        </div> 
     </div>
 
     <div class='card mt-3'>

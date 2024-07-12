@@ -56,7 +56,7 @@ class ProductController extends Controller
 
        $product['name'] = $input['name'];
        $product['description'] = $input['description'];
-       $product['description'] = $input['description'];
+       $product['price'] = $input['price'];
 
        $product->update($input);
        return redirect('/');

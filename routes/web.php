@@ -7,16 +7,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\Sales;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
 /*
     DASHBOARD
@@ -50,6 +40,7 @@ VENDAS: GET/POST/UPDATE/EDIT/DELETE
 Route::get('/sales', [ProductController::class, 'showSales']);
 Route::post('/sales',[Sales::class, 'create']);
 Route::get('/edit-sale/{sale}',[Sales::class, 'dataToEditSales']);
+Route::put('/edit-sale/{sale}',[Sales::class, 'editSale']);
 Route::get('/search',[Sales::class, 'search']);
 
 
