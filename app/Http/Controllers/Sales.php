@@ -50,7 +50,7 @@ class Sales extends Controller
         ->join('client', 'client_products.client_id', '=', 'client.id')
         ->join('products', 'client_products.product_id','=', 'products.id' )
         ->select('client_products.*', 'client.name as client_name','products.name as products_name', 'products.price')
-        ->get();;
+        ->get();
       return view('edit_sales', ['sales'=> $sales, 'products'=> $products]);
      }
      public function editSale(Request $request, $id){
@@ -86,6 +86,16 @@ class Sales extends Controller
 
      }
     public function search(Request $request){
+        $inputForm = $request->validate([
+            'id' => 'required'
+        ]);
         
-        }
+        $sales = DB::table('client_products')
+            ->where('client_products.client_id', '=',  $inputForm['id'])
+            ->join('client', 'client_products.client_id', '=', 'client.id')
+            ->join('products', 'client_products.product_id','=', 'products.id' )
+            ->select('client_products.*', 'client.name as client_name','products.name as products_name', 'products.price')
+            ->get();
+            redirect('/sales');
+    }
 }

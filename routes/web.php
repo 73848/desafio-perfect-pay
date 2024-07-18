@@ -32,8 +32,6 @@ Route::delete('/edit-product/{product}', [ProductController::class, 'delete']);
 Route::post('/products',[ProductController::class, 'create']);
 
 
-
-
 /*
 VENDAS: GET/POST/UPDATE/EDIT/DELETE
 */

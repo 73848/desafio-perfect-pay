@@ -1,5 +1,4 @@
 @extends('layout')
-
 @section('content')
     <h1>Dashboard de vendas</h1>
     <div class='card mt-3'>
@@ -15,8 +14,8 @@
                             </div>
                             <select class="form-control" id="inlineFormInputName">
                                 <option>Clientes</option>
-                                @foreach ($sales as $sale)
-                                <option name="name" value={{$sale->client_name}}>{{$sale->client_name}}</option>
+                                @foreach ($clients as $client)
+                                <option  value={{$client->id}}>{{$client->name}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -37,7 +36,6 @@
                     </div>
                 </div>
             </form>
-            
             <table class='table'>
                 <tr>
                     <th scope="col">
@@ -76,6 +74,17 @@
         <div class='card-body'>
             <h5 class="card-title mb-5">Resultado de vendas</h5>
             <table class='table'>
+                <tr>
+                    <th scope="col">
+                        Status
+                    </th>
+                    <th scope="col">
+                        Quantidade
+                    </th>
+                    <th scope="col">
+                        Preço com desconto
+                    </th>
+                </tr>
                 @foreach ($sales as $sale)
                     <tr>
                         <th scope="col">
@@ -92,7 +101,6 @@
             </table>
         </div> 
     </div>
-
     <div class='card mt-3'>
         <div class='card-body'>
             <h5 class="card-title mb-5">Produtos
