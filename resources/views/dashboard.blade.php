@@ -121,19 +121,19 @@
                     </th>
                 </tr>
                 
-                @foreach ($sales as $sale)
+                @foreach ($products as $product)
                 <tr>
                     <td>
-                        {{$sale->products_name}}
+                        {{$product->name}}
                     </td>
                     <td>
-                       R$ {{$sale->price}}
+                       R$ {{$product->price}}
                     </td>
                     <td>
-                        <a href='/edit-product/{{$sale->product_id}}' class='btn btn-primary'>Editar</a>
+                        <a href='/edit-product/{{$product->id}}' class='btn btn-primary'>Editar</a>
                     </td>
                     <td>
-                        <form action="/edit-product/{{$sale->product_id}}" method="POST">
+                        <form action="/edit-product/{{$product->id}}" method="POST">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class='btn btn-danger' >Excluir</button>
