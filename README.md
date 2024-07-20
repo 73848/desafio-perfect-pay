@@ -30,6 +30,11 @@ copy .env.example .env
 php artisan key:generate
 ``` 
 - Configurar o .env mudando para a conexão com db de sua escolha e rode o comando php artisan migrate
+
+- Criar alguns dados falsos para testes utilizando o comando 
+``` 
+php artisan db:seed
+``` 
 - Por fim, basta rodar o comando 
 ``` 
 php artisan server
