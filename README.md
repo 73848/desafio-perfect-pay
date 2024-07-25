@@ -14,7 +14,7 @@ Este projeto em forma de desafio consiste em um aplicativo para gerenciamento de
 - `Autenticação e histórico de opeações`: Em breve irá ser criado uma funcionalidade que permita que vários usuários tenham acesso ao aplicativo e que suas atividades sejam mapeadas e salvas para futuras consultas.
 
 ### Pré-requisitos
-- Para rodar esse projeto em sua máquina, você precisar ter instalado em sua máquina:
+- Para rodar esse projeto em sua máquina, você precisar ter instalado:
 
 ```
 PHP versão > 8.2
