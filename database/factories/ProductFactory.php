@@ -20,7 +20,7 @@ class ProductFactory extends Factory
     public function definition()
     {
         return [
-            'id' => fake()->numerify(),
+            'id' => fake()->unique()->numerify(),
             'name' => fake()->word(),
             'description' => fake()->sentence(),
             'price' => fake()->numberBetween(0,1000)
