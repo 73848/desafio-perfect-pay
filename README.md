@@ -9,12 +9,12 @@ Este projeto em forma de desafio consiste em um aplicativo para gerenciamento de
 ## Funcionalidades 
 
 - `CRUD Produtos`: Operações básicas para a tabela produto. 
-- `CRUD Clientes`: Operações básicas para a tabela produto
-- `CRUD Vendas`: Operações básicas para a tabela produto. Em breve será colocada algumas validações para garantir a lógica de negócio das vendas.
+- `CRUD Clientes`: Operações básicas para a tabela clientes.
+- `CRUD Vendas`: Operações básicas para a tabela vendas. Em breve será colocada algumas validações para garantir a lógica de negócio das vendas.
 - `Autenticação e histórico de opeações`: Em breve irá ser criado uma funcionalidade que permita que vários usuários tenham acesso ao aplicativo e que suas atividades sejam mapeadas e salvas para futuras consultas.
 
 ### Pré-requisitos
-- Para rodar esse projeto em sua máquina, você precisar ter instalado em sua máquina:
+- Para rodar esse projeto em sua máquina, você precisar ter instalado:
 
 ```
 PHP versão > 8.2
