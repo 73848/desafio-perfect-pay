@@ -27,8 +27,8 @@ class ProductController extends Controller
         return redirect('/products');
       }
       public function showSales(){
-        $products = DB::table('products')->get();
-        $clients = DB::table('client')->get();
+        $products = DB::table('products')->paginate(10);
+        $clients = DB::table('client')->paginate(10);
         return view('crud_sales', ['products'=> $products,'clients' => $clients]);
 }     
       public function showDashboard(){
@@ -38,7 +38,7 @@ class ProductController extends Controller
         ->join('client', 'client_products.client_id', '=', 'client.id')
         ->join('products', 'client_products.product_id','=', 'products.id' )
         ->select('client_products.*', 'client.name as client_name','products.name as products_name', 'products.price')
-        ->get();
+        ->paginate(10);
         return view('dashboard', ['products'=> $products, 'sales' => $sales, 'clients' => $clients ]);
       }
 

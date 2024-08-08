@@ -44,7 +44,7 @@ class Sales extends Controller
         return redirect('/sales');
     }     
     public function dataToEditSales($id){
-        $products = DB::table('products')->get();
+        $products = DB::table('products')->paginate(10);
         $sales = DB::table('client_products')
         ->where('client_products.client_id', '=',  $id)
         ->join('client', 'client_products.client_id', '=', 'client.id')
@@ -86,16 +86,13 @@ class Sales extends Controller
 
      }
     public function search(Request $request){
-        $inputForm = $request->validate([
+        $request->validate([
             'id' => 'required'
         ]);
         
         $sales = DB::table('client_products')
-            ->where('client_products.client_id', '=',  $inputForm['id'])
-            ->join('client', 'client_products.client_id', '=', 'client.id')
-            ->join('products', 'client_products.product_id','=', 'products.id' )
-            ->select('client_products.*', 'client.name as client_name','products.name as products_name', 'products.price')
+            ->where('client_products.client_id', '=', $request->id )
             ->get();
-            redirect('/sales');
-    }
+            return view('dashboard', ['sales'=> $sales]);
+        }
 }

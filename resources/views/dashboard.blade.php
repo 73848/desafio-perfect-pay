@@ -20,15 +20,6 @@
                             </select>
                         </div>
                     </div>
-                    <div class="col-sm-6 my-1">
-                        <label class="sr-only" for="inlineFormInputGroupUsername">Username</label>
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <div class="input-group-text">Período</div>
-                            </div>
-                            <input type="text" class="form-control date_range" id="inlineFormInputGroupUsername" placeholder="Username">
-                        </div>
-                    </div>
                     <div class="col-sm-1 my-1">
                         <button type="submit" class="btn btn-primary" style='padding: 14.5px 16px;'>
                             <i class='fa fa-search'></i>
@@ -36,6 +27,10 @@
                     </div>
                 </div>
             </form>
+
+
+
+
             <table class='table'>
                 <tr>
                     <th scope="col">
