@@ -12,7 +12,7 @@
     </div>
     @endif
     <div class='card'>
-        @foreach ($sales as $sale)
+        @dd($sale)
         <div class='card-body'>
             <form action="/edit-sale/{{$sale->product_id}}" method="POST">
                 @csrf
@@ -54,7 +54,6 @@
                 </div>
                 <button type="submit" class="btn btn-primary">Salvar</button>
             </form>
-            @endforeach
         </div>
         
     </div>

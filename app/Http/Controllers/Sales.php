@@ -45,13 +45,10 @@ class Sales extends Controller
     }     
     public function dataToEditSales($id){
         $products = DB::table('products')->paginate(10);
-        $sales = DB::table('client_products')
+        $sale = DB::table('client_products')
         ->where('client_products.client_id', '=',  $id)
-        ->join('client', 'client_products.client_id', '=', 'client.id')
-        ->join('products', 'client_products.product_id','=', 'products.id' )
-        ->select('client_products.*', 'client.name as client_name','products.name as products_name', 'products.price')
-        ->get();
-      return view('edit_sales', ['sales'=> $sales, 'products'=> $products]);
+        ->first();
+      return view('edit_sales', ['sale'=> $sale, 'products'=> $products]);
      }
      public function editSale(Request $request, $id){
         $inputForm = $request->validate(
