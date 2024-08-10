@@ -11,7 +11,7 @@ use Tests\TestCase;
 class EditProductViewTest extends TestCase
 {
     use RefreshDatabase;
-    public function test_crud_products_view(){
+    public function test_edit_products_view(){
         $product = Product::factory(30)->create();
         $product = $product->first();
 

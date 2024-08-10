@@ -36,10 +36,10 @@ Route::post('/products',[ProductController::class, 'create']);
 VENDAS: GET/POST/UPDATE/EDIT/DELETE
 */
 Route::get('/sales', [ProductController::class, 'showSales']);
+Route::get('/edit-sale/{sale}', [Sales::class, 'dataToEditSales']);
+Route::put('/edit-sale/{sale}', [Sales::class, 'editSale']);
 Route::post('/sales',[Sales::class, 'create']);
-Route::get('/edit-sale/{sale}',[Sales::class, 'dataToEditSales']);
-Route::put('/edit-sale/{sale}',[Sales::class, 'editSale']);
-Route::get('/search',[Sales::class, 'search']);
+Route::get('/search', [Sales::class, 'search']);
 
 
 

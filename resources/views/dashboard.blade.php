@@ -1,6 +1,6 @@
 @extends('layout')
 @section('content')
-    <h1>Dashboard de vendas</h1>
+<h1>Dashboard de vendas</h1>
     <div class='card mt-3'>
         <div class='card-body'>
             <h5 class="card-title mb-5">Tabela de vendas

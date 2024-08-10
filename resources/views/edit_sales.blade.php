@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('content')
-    <h1>Adicionar / Editar Venda</h1>
+    <h1>Adicionar / Editar carro</h1>
     @if ($errors->any())
     <div class="alert alert-danger">
         <ul>
@@ -56,5 +56,6 @@
             </form>
             @endforeach
         </div>
+        
     </div>
 @endsection
