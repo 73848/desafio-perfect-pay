@@ -20,7 +20,10 @@ class ClientControllerTest extends TestCase
         $this->assertEquals('Jhonny Dogs', $client->name);
         $this->assertEquals('jhonyDogs@gmail.com',$client->email);
         $this->assertEquals('000000000-00', $client->cpf);
+
+        
     }
+
 
 
 
