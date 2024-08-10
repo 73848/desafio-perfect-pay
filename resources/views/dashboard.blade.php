@@ -58,7 +58,7 @@
                         R${{$sale->price}}                  
                     </td>
                     <td>
-                        <a href='/edit-sale/{{$sale->product_id}}' class='btn btn-primary'>Editar</a>
+                        <a href='/edit-sale/{{$sale->id }}' class='btn btn-primary'>Editar</a>
                     </td>
                 </tr>
                 @endforeach

@@ -12,9 +12,8 @@
     </div>
     @endif
     <div class='card'>
-        @dd($sale)
         <div class='card-body'>
-            <form action="/edit-sale/{{$sale->product_id}}" method="POST">
+            <form action="/edit-sale/{{$sale->id}}" method="POST">
                 @csrf
                 @method('PUT')
                 <h5 class='mt-5'>Informações da venda </h5>
@@ -30,7 +29,7 @@
                     
                 <div class="form-group">
                     <label for="date">Data</label>
-                    <input type="text" class="form-control single_date_picker"  id="date" value="{{$sale->quantity}}" name="date">
+                    <input type="text" class="form-control single_date_picker"  id="date" value="{{$sale->date}}" name="date">
                 </div>
                 <div class="form-group">
                     <label for="quantity">Quantidade</label>
