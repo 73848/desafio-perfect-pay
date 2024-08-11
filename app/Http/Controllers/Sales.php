@@ -31,8 +31,7 @@ class Sales extends Controller
          
          // manipulando o formato da data antes de inserir no db para mais dúvidas, verifique a doc do PHP sobre 
          //a classe DateTime
-         $format = 'd/m/Y';
-         $dateFormat = \DateTime::createFromFormat($format, $date )->format('Y-m-d');
+        $dateFormat = banco_de_dados_aplicacao($date);
 
          $client = Client::find($inputForm['client_id']);
          $client->products()->attach($inputForm[ 'client_id'],
@@ -45,6 +44,8 @@ class Sales extends Controller
     }     
     public function dataToEditSales($id){
         $products = DB::table('products')->paginate(10);
+
+        
         $sale = DB::table('client_products')
         ->join('client', 'client_products.client_id', '=', 'client.id')
         ->join('products', 'client_products.product_id','=', 'products.id' )
@@ -66,6 +67,7 @@ class Sales extends Controller
              'status' =>   'required',
             ]
         );
+
         $inputForm['product_id'] = strip_tags('product_id');
         $date= strip_tags( $inputForm[ 'date']);
         $quantity = strip_tags( $inputForm[ 'quantity']);
@@ -74,6 +76,7 @@ class Sales extends Controller
 
         $format = 'd/m/Y';
         $dateFormat = \DateTime::createFromFormat($format, $date )->format('Y-m-d');
+
 
         $client = Client::find($id);
 

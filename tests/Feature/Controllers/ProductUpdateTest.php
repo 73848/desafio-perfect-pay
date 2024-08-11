@@ -18,7 +18,7 @@ class ProductUpdate extends TestCase
         $productData = [
             'name'=>'Iphone 7',
             'description'=>'O melhor móvel da atualizade',
-            'price' => '800',
+            'price' => '800',   
         ];
         $productUpdate = [
             'name'=>'Iphone 15',

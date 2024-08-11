@@ -1,5 +1,8 @@
 @extends('layout')
+@php
+            $sale->date = \DateTime::createFromFormat('Y-m-d', $sale->date )->format('d/m/Y');
 
+@endphp
 @section('content')
     <h1>Adicionar / Editar carro</h1>
     @if ($errors->any())
@@ -29,7 +32,7 @@
                     
                 <div class="form-group">
                     <label for="date">Data</label>
-                    <input type="text" class="form-control single_date_picker"  id="date" value="{{$sale->date}}" name="date">
+                    <input type="text" class="form-control single_date_picker"  id="date" value="{{ $sale->date}}" name="date">
                 </div>
                 <div class="form-group">
                     <label for="quantity">Quantidade</label>
