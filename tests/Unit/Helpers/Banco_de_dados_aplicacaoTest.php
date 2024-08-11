@@ -19,6 +19,15 @@ class HelpersDBAplication extends TestCase
         
     }
 
+    public function test_banco_de_dados_aplicacao_is_working_corretly(){
+        $date_from_db = '1972-10-18';
+
+        $date_formated = banco_de_dados_aplicacao($date_from_db);
+
+        $this->assertEquals('18/10/1972', $date_formated);
+        
+    }
+
    
     
 
