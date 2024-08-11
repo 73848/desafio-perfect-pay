@@ -31,7 +31,7 @@ class Sales extends Controller
          
          // manipulando o formato da data antes de inserir no db para mais dúvidas, verifique a doc do PHP sobre 
          //a classe DateTime
-        $dateFormat = banco_de_dados_aplicacao($date);
+        $dateFormat = aplicacao_banco_de_dados_($date);
 
          $client = Client::find($inputForm['client_id']);
          $client->products()->attach($inputForm[ 'client_id'],

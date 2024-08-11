@@ -1,7 +1,7 @@
 <?php
 
- function banco_de_dados_aplicacao($date_from_db){
+ function aplicacao_banco_de_dados_($date_from_app){
     $format = 'd/m/Y';
-    $dateFormat = \DateTime::createFromFormat($format, $date_from_db )->format('Y-m-d');
+    $dateFormat = \DateTime::createFromFormat($format, $date_from_app )->format('Y-m-d');
     return $dateFormat;
 };
