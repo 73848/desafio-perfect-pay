@@ -34,11 +34,7 @@ class ProductController extends Controller
       public function showDashboard(){
         $products = DB::table('products')->orderBy('name')->get();
         $clients = DB::table('client')->orderBy('name')->get();
-        $sales = DB::table('client_products')
-        ->join('client', 'client_products.client_id', '=', 'client.id')
-        ->join('products', 'client_products.product_id','=', 'products.id' )
-        ->select('client_products.*', 'client.name as client_name','products.name as products_name', 'products.price')
-        ->paginate(10);
+        $sales = get_sales_data();
         return view('dashboard', ['products'=> $products, 'sales' => $sales, 'clients' => $clients ]);
       }
 
