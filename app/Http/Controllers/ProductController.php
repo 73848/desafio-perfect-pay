@@ -27,12 +27,12 @@ class ProductController extends Controller
         return redirect('/products');
       }
       public function showSales(){
-        $products = DB::table('products')->paginate(10);
+        $products = get_products_data();
         $clients = DB::table('client')->paginate(10);
         return view('crud_sales', ['products'=> $products,'clients' => $clients]);
 }     
       public function showDashboard(){
-        $products = DB::table('products')->orderBy('name')->get();
+        $products = get_products_data();
         $clients = DB::table('client')->orderBy('name')->get();
         $sales = get_sales_data();
         return view('dashboard', ['products'=> $products, 'sales' => $sales, 'clients' => $clients ]);

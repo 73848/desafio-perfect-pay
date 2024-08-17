@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Http\Controllers\Sales;
 use Illuminate\Support\Facades\DB;
 use App\Models\Client;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -13,17 +14,9 @@ class Requisicao_banco_de_dados extends TestCase
 {
    
 
-    public function get_sales_data(){
+    public function is_get_sales_data_test(){
         
-       $sales = 
-       [    'product_id' => 30,
-            'client_id'=> 2,
-            'quantity' => 2, 
-            'date' => 30/08/2021,
-            'discount' => 100, 
-            'status' => 'Aprovado'
-       ];
-
+        
     }
 
    

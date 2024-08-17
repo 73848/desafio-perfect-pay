@@ -23,3 +23,8 @@ function get_sales_data(){
 
     return $sales;
 }
+
+function get_products_data(){
+    $products = DB::table('products')->orderBy('name')->paginate(10);
+    return $products;
+}
