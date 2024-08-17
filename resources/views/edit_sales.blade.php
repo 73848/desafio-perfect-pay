@@ -1,8 +1,5 @@
 @extends('layout')
-@php
-            $sale->date = \DateTime::createFromFormat('Y-m-d', $sale->date )->format('d/m/Y');
 
-@endphp
 @section('content')
     <h1>Adicionar / Editar carro</h1>
     @if ($errors->any())

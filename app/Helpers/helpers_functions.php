@@ -18,10 +18,25 @@ function get_sales_data(){
     $sales = DB::table('client_products')
     ->join('client', 'client_products.client_id', '=', 'client.id')
     ->join('products', 'client_products.product_id','=', 'products.id' )
-    ->select('client_products.*', 'client.name as client_name','products.name as products_name', 'products.price')
-    ->paginate(10);
-
+    ->select('client_products.*', 'client.name as client_name','products.name as products_name', 'products.price as products_price')
+    ->paginate(10);   
+    
+    
     return $sales;
+}
+function get_especific_sales($id){
+    $sale = DB::table('client_products')
+    ->join('client', 'client_products.client_id', '=', 'client.id')
+    ->join('products', 'client_products.product_id','=', 'products.id' )
+    ->select('client_products.*',
+     'client.name as client_name',
+     'products.name as products_name',
+     'products.price as products_price')
+    ->where('client_products.id', '=',  $id)
+    ->first();
+
+    return $sale;
+    
 }
 
 function get_products_data(){

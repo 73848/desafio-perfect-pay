@@ -3,7 +3,6 @@
 <h1>Dashboard de vendas</h1>
 <div class='card mt-3'>
         <div class='card-body'>
-            @dd($products[0]->name)
             <h5 class="card-title mb-5">Tabela de vendas
                 <a href='/sales' class='btn btn-secondary float-right btn-sm rounded-pill'><i class='fa fa-plus'></i>  Nova venda</a></h5>
             <form action="/search" method="GET">
@@ -56,7 +55,7 @@
                         {{$sale->date}}
                     </td>
                     <td>
-                        R${{$sale->price}}                  
+                        R${{$sale->products_price}}                  
                     </td>
                     <td>
                         <a href='/edit-sale/{{$sale->id }}' class='btn btn-primary'>Editar</a>
@@ -90,7 +89,7 @@
                             {{$sale->quantity}}
                         </th>
                         <th scope="col">
-                            R$ {{($sale->price)-($sale->discount)}}
+                            R$ {{($sale->products_price)-($sale->discount)}}
                         </th>
                     </tr>
                 @endforeach

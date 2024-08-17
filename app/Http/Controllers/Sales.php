@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Client;
 use App\Models\Product;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -45,16 +46,7 @@ class Sales extends Controller
     public function dataToEditSales($id){
         $products = DB::table('products')->paginate(10);
 
-        
-        $sale = DB::table('client_products')
-        ->join('client', 'client_products.client_id', '=', 'client.id')
-        ->join('products', 'client_products.product_id','=', 'products.id' )
-        ->select('client_products.*',
-         'client.name as client_name',
-         'products.name as products_name',
-         'products.price as products_price')
-        ->where('client_products.id', '=',  $id)
-        ->first();
+        $sale = get_especific_sales($id);
       return view('edit_sales', ['sale'=> $sale, 'products'=> $products]);
      }
      public function editSale(Request $request, $id){
