@@ -46,9 +46,12 @@ class Sales extends Controller
     public function dataToEditSales($id){
         $products = DB::table('products')->paginate(10);
 
-        $sale = get_especific_sales($id);
-      return view('edit_sales', ['sale'=> $sale, 'products'=> $products]);
-     }
+        $sale = get_sales_data()
+        ->where('client_products.id',  $id);    
+      
+        return view('edit_sales', ['sale'=> $sale, 'products'=> $products]);
+     
+    }
      public function editSale(Request $request, $id){
         $inputForm = $request->validate(
             [ 

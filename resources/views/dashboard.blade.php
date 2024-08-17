@@ -3,6 +3,7 @@
 <h1>Dashboard de vendas</h1>
 <div class='card mt-3'>
         <div class='card-body'>
+            @dd($sales)
             <h5 class="card-title mb-5">Tabela de vendas
                 <a href='/sales' class='btn btn-secondary float-right btn-sm rounded-pill'><i class='fa fa-plus'></i>  Nova venda</a></h5>
             <form action="/search" method="GET">

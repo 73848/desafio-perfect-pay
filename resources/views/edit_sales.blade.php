@@ -15,6 +15,7 @@
         <div class='card-body'>
             <form action="/edit-sale/{{$sale->id}}" method="POST">
                 @csrf
+                @dd($sale)
                 @method('PUT')
                 <h5 class='mt-5'>Informações da venda </h5>
                 <div class="form-group">
