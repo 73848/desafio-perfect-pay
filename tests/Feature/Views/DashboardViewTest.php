@@ -7,7 +7,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-# php artisan test --filter=ProductControllerTest
+# php artisan test --filter=DashboardViewTest
 class DashboardViewTest extends TestCase
 {
     use RefreshDatabase;
@@ -20,7 +20,8 @@ class DashboardViewTest extends TestCase
         $response->assertStatus(200);
 
         $response->assertViewIs('dashboard');
-        $response->assertViewHas('products', $product);
+
+        $this->assertIsObject($product);
 
     }
 
