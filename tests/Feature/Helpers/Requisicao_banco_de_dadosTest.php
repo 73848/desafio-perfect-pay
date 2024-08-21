@@ -29,6 +29,8 @@ class Requisicao_banco_de_dados extends TestCase
         
         
         $data = get_products_data();
+        $this->assertIsObject($data);
+        
         $this->assertEquals(0001, $data[0]->id);
         $this->assertEquals('Nintendo 3DS', $data[0]->name);
         $this->assertEquals('A melhor experiencia em games', $data[0]->description);
