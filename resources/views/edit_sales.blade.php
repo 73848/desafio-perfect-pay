@@ -28,6 +28,9 @@
                 </div>
                     
                 <div class="form-group">
+                    <input type="hidden" class="form-control"  id="client_id" value="{{$sale->client_id}}" name="client_id">
+                </div>
+                <div class="form-group">
                     <label for="date">Data</label>
                     <input type="text" class="form-control single_date_picker"  id="date" value="{{banco_de_dados_aplicacao($sale->date)}}" name="date">
                 </div>
