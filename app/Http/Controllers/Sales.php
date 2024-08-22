@@ -74,12 +74,9 @@ class Sales extends Controller
         $discount = strip_tags( $inputForm[ 'discount']);
         $status =strip_tags( $inputForm[ 'status']);
 
-        $format = 'd/m/Y';
-        $dateFormat = \DateTime::createFromFormat($format, $date )->format('Y-m-d');
-
+        $dateFormat = aplicacao_banco_de_dados_($date);
 
         $client = Client::find($id);
-
         $client->products()->updateExistingPivot($id, [
             'product_id' => $id,
             'date' => $dateFormat,
@@ -92,13 +89,5 @@ class Sales extends Controller
 
      }
     public function search(Request $request){
-        $request->validate([
-            'id' => 'required'
-        ]);
-        
-        $sales = DB::table('client_products')
-            ->where('client_products.client_id', '=', $request->id )
-            ->get();
-            return view('dashboard', ['sales'=> $sales]);
-        }
+    }
 }

@@ -11,7 +11,7 @@ use Tests\TestCase;
 class DashboardViewTest extends TestCase
 {
     use RefreshDatabase;
-    public function test_dashboard_view(){
+    public function test_dashboard_view_product(){
         $products = Product::factory(30)->create();
         $product = $products->first();
 

@@ -20,9 +20,9 @@ class ClientRegistration extends TestCase
             'cpf'=>'000000000-00',
         ];
         
-        $client = Client::factory()->create($clientData);
+        Client::factory()->create($clientData);
         
-        $response = $this->post('/register',$clientData );
+        $response = $this->post('/register', $clientData );
 
         $response->assertStatus(302);
         $this->assertDatabaseHas('client', ['email'=>'jhonyDogs@gmail.com']);

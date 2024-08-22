@@ -1,12 +1,12 @@
 <?php
 use Illuminate\Support\Facades\DB;
-
- function aplicacao_banco_de_dados_($date_from_app){
+// guardar data no DB
+function aplicacao_banco_de_dados_($date_from_app){
     $format = 'd/m/Y';
     $dateFormat = \DateTime::createFromFormat($format, $date_from_app )->format('Y-m-d');
     return $dateFormat;
 };
-
+// converter data do DB
 function banco_de_dados_aplicacao($date_from_db){
     $format = 'Y-m-d';
     $date_formated = \DateTime::createFromFormat($format, $date_from_db )->format('d/m/Y');

@@ -15,7 +15,6 @@
         <div class='card-body'>
             <form action="/edit-sale/{{$sale->id}}" method="POST">
                 @csrf
-                @dd($sale)
                 @method('PUT')
                 <h5 class='mt-5'>Informações da venda </h5>
                 <div class="form-group">
@@ -30,7 +29,7 @@
                     
                 <div class="form-group">
                     <label for="date">Data</label>
-                    <input type="text" class="form-control single_date_picker"  id="date" value="{{ $sale->date}}" name="date">
+                    <input type="text" class="form-control single_date_picker"  id="date" value="{{banco_de_dados_aplicacao($sale->date)}}" name="date">
                 </div>
                 <div class="form-group">
                     <label for="quantity">Quantidade</label>
