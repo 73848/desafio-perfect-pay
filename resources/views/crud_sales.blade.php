@@ -37,18 +37,16 @@
                 <div class="form-group">
                     <label for="product">Cliente</label>
                     <select name="client_id"  class="form-control">
-                        <option selected>Escolha...</option>
                         @foreach ($clients as $client)
-                        <option value = "{{$client->id}}">{{$client->name}}</option>
+                        <option client_id value = "{{$client->id}}">{{$client->name}}</option>
                         @endforeach
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="product">Produto</label>
                     <select id="product" name="product_id"  class="form-control">
-                        <option selected>Escolha...</option>
                         @foreach ($products as $product)
-                        <option value = "{{$product->id}}">{{$product->name}}</option>
+                        <option value = "{{$product->id}}">{{$product->name}} -  por apenas R$ {{$product->price}},00</option>
                         @endforeach
                     </select>
                 </div>
