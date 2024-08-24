@@ -1,23 +1,20 @@
 @extends('layout')
 @section('content')
-<h1>Dashboard de vendas</h1>
-<div class='card mt-3'>
+    <h1>Dashboard de vendas</h1>
+    <div class='card mt-3'>
         <div class='card-body'>
             <h5 class="card-title mb-5">Tabela de vendas
-                <a href='/sales' class='btn btn-secondary float-right btn-sm rounded-pill'><i class='fa fa-plus'></i>  Nova venda</a></h5>
+                <a href='/sales' class='btn btn-secondary float-right btn-sm rounded-pill'><i class='fa fa-plus'></i> Nova venda</a>
+            </h5>
             <form action="/search" method="GET">
+                @csrf
                 <div class="form-row align-items-center">
                     <div class="col-sm-5 my-1">
                         <div class="input-group">
                             <div class="input-group-prepend">
                                 <div class="input-group-text">Clientes</div>
                             </div>
-                            <select class="form-control" id="inlineFormInputName">
-                                <option>Clientes</option>
-                                @foreach ($clients as $client)
-                                <option  value={{$client->id}}>{{$client->name}}</option>
-                                @endforeach
-                            </select>
+                            <input type="text" class="form-control " id="search" name="search">
                         </div>
                     </div>
                     <div class="col-sm-1 my-1">
@@ -27,10 +24,6 @@
                     </div>
                 </div>
             </form>
-
-
-
-
             <table class='table'>
                 <tr>
                     <th scope="col">
@@ -47,20 +40,20 @@
                     </th>
                 </tr>
                 @foreach ($sales as $sale)
-                <tr>
-                    <td>
-                        {{$sale->products_name}}                    
-                    </td>
-                    <td>
-                        {{$sale->date}}
-                    </td>
-                    <td>
-                        R${{$sale->products_price}}                  
-                    </td>
-                    <td>
-                        <a href='/edit-sale/{{$sale->id }}' class='btn btn-primary'>Editar</a>
-                    </td>
-                </tr>
+                    <tr>
+                        <td>
+                            {{ $sale->products_name }}
+                        </td>
+                        <td>
+                            {{ $sale->date }}
+                        </td>
+                        <td>
+                            R${{ $sale->products_price }},00
+                        </td>
+                        <td>
+                            <a href='/edit-sale/{{ $sale->id }}' class='btn btn-primary'>Editar</a>
+                        </td>
+                    </tr>
                 @endforeach
             </table>
         </div>
@@ -83,23 +76,25 @@
                 @foreach ($sales as $sale)
                     <tr>
                         <th scope="col">
-                            {{$sale->status}}
+                            {{ $sale->status }}
                         </th>
                         <th scope="col">
-                            {{$sale->quantity}}
+                            {{ $sale->quantity }}
                         </th>
                         <th scope="col">
-                            R$ {{($sale->products_price)-($sale->discount)}}
+                            R$ {{ $sale->products_price - $sale->discount }}
                         </th>
                     </tr>
                 @endforeach
             </table>
-        </div> 
+        </div>
     </div>
     <div class='card mt-3'>
         <div class='card-body'>
             <h5 class="card-title mb-5">Produtos
-                <a href='/products' class='btn btn-secondary float-right btn-sm rounded-pill'><i class='fa fa-plus'></i>  Novo produto</a></h5>
+                <a href='/products' class='btn btn-secondary float-right btn-sm rounded-pill'><i class='fa fa-plus'></i>
+                    Novo produto</a>
+            </h5>
             <table class='table'>
                 <tr>
                     <th scope="col">
@@ -112,29 +107,29 @@
                         Ações
                     </th>
                     <th scope="col">
-                        
+
                     </th>
                 </tr>
-                
+
                 @foreach ($products as $product)
-                <tr>
-                    <td>
-                        {{$product->name}}
-                    </td>
-                    <td>
-                       R$ {{$product->price}}
-                    </td>
-                    <td>
-                        <a href='/edit-product/{{$product->id}}' class='btn btn-primary'>Editar</a>
-                    </td>
-                    <td>
-                        <form action="/edit-product/{{$product->id}}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class='btn btn-danger' >Excluir</button>
-                        </form>
-                    </td>
-                </tr>
+                    <tr>
+                        <td>
+                            {{ $product->name }}
+                        </td>
+                        <td>
+                            R$ {{ $product->price }}
+                        </td>
+                        <td>
+                            <a href='/edit-product/{{ $product->id }}' class='btn btn-primary'>Editar</a>
+                        </td>
+                        <td>
+                            <form action="/edit-product/{{ $product->id }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class='btn btn-danger'>Excluir</button>
+                            </form>
+                        </td>
+                    </tr>
                 @endforeach
             </table>
         </div>
