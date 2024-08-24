@@ -18,18 +18,26 @@ function banco_de_dados_aplicacao($date_from_db)
 
 function get_sales_data($id = false)
 {
-    if(!$id){
-
+    if($id){
+       $sales =  DB::table('client_products')
+            ->join('client', 'client_products.client_id', '=', 'client.id')
+            ->join('products', 'client_products.product_id', '=', 'products.id')
+            ->select(
+                'client_products.*',
+                'client.name as client_name',
+                'products.name as products_name',
+                'products.price as products_price'
+            )
+            ->where('client_products.id', '=',  $id)
+            ->first();
     }
     else{
-        
+        $sales = DB::table('client_products')
+            ->join('client', 'client_products.client_id', '=', 'client.id')
+            ->join('products', 'client_products.product_id', '=', 'products.id')
+            ->select('client_products.*', 'client.name as client_name', 'products.name as products_name', 'products.price as products_price')
+            ->get();
     }
-    $sales = DB::table('client_products')
-        ->join('client', 'client_products.client_id', '=', 'client.id')
-        ->join('products', 'client_products.product_id', '=', 'products.id')
-        ->select('client_products.*', 'client.name as client_name', 'products.name as products_name', 'products.price as products_price')
-        ->get();
-
     return $sales;
 }
 function get_especific_sales_by_client($search, $pagination = 2)

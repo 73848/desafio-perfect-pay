@@ -50,17 +50,7 @@ class Sales extends Controller
     {
         $products = DB::table('products')->paginate(10);
 
-        $sale = DB::table('client_products')
-            ->join('client', 'client_products.client_id', '=', 'client.id')
-            ->join('products', 'client_products.product_id', '=', 'products.id')
-            ->select(
-                'client_products.*',
-                'client.name as client_name',
-                'products.name as products_name',
-                'products.price as products_price'
-            )
-            ->where('client_products.id', '=',  $id)
-            ->first();
+        $sale = get_sales_data($id);
         return view('edit_sales', ['sale' => $sale, 'products' => $products]);
     }
     public function editSale(Request $request, $id)
