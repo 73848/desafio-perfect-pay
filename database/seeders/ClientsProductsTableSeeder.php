@@ -21,7 +21,7 @@ class ClientsProductsTableSeeder extends Seeder
         foreach(Product::all( ) as $product){
             $client = Client::inRandomOrder()->take(rand(1,15))->pluck('id')->toArray();
             $product->clients()->attach($client, [
-                'quantity' => fake()->numerify('##'), 
+                'quantity' => fake()->numerify('#'), 
                 'date' => fake()->date('Y_m_d') ,
                 'discount' => fake()->numerify('##'), 
                 'status' => fake()->randomElement(['Aprovado', 'Cancelado', 'Devolvido'])]);

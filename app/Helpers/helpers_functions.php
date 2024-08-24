@@ -40,13 +40,14 @@ function get_sales_data($id = false)
     }
     return $sales;
 }
-function get_especific_sales_by_client($search, $pagination = 5)
+function get_especific_sales_by_client_product($search, $pagination = 5)
 {
 
     $result = DB::table('client_products')
         ->join('client', 'client_products.client_id', '=', 'client.id')
         ->join('products', 'client_products.product_id', '=', 'products.id')
         ->where('client.name', '=', $search)
+        ->orWhere('products.name','=',$search)
         ->select(
             'client_products.*',
             'client.name as client_name',

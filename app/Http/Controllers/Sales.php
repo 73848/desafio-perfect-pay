@@ -92,7 +92,7 @@ class Sales extends Controller
         $inputForm = $request->validate(['search' => 'required']);
         $search = $inputForm['search'];
         $products = get_products_data();
-        $sales = get_especific_sales_by_client($search);
+        $sales = get_especific_sales_by_client_product($search);
 
 
         return view('dashboard', ['sales' => $sales, 'products' => $products]);
