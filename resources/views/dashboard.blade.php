@@ -45,7 +45,7 @@
                             {{ $sale->products_name }}
                         </td>
                         <td>
-                            {{ $sale->date }}
+                            {{ banco_de_dados_aplicacao($sale->date) }}
                         </td>
                         <td>
                             R${{ $sale->products_price }},00
