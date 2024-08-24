@@ -92,18 +92,9 @@ class Sales extends Controller
         $inputForm = $request->validate(['search' => 'required']);
         $search = $inputForm['search'];
         $products = get_products_data();
-        $sales = DB::table('client_products')
-            ->join('client', 'client_products.client_id', '=', 'client.id')
-            ->join('products', 'client_products.product_id', '=', 'products.id')
-            ->where('client.name', '=', $search )
-            ->select(
-                'client_products.*',
-                'client.name as client_name',
-                'products.name as products_name',
-                'products.price as products_price'
-            )->paginate(2);
+        $sales = get_especific_sales_by_client($search);
 
 
-        return view('dashboard', ['sales' => $sales, 'products' => $products]);;
+        return view('dashboard', ['sales' => $sales, 'products' => $products]);
     }
 }

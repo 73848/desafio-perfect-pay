@@ -40,7 +40,7 @@ function get_sales_data($id = false)
     }
     return $sales;
 }
-function get_especific_sales_by_client($search, $pagination = 2)
+function get_especific_sales_by_client($search, $pagination = 5)
 {
 
     $result = DB::table('client_products')
