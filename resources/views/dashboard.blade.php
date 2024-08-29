@@ -14,7 +14,7 @@
                             <div class="input-group-prepend">
                                 <div class="input-group-text">Clientes</div>
                             </div>
-                            <input type="text" class="form-control " id="search" name="search">
+                            <input type="text" class="form-control  " id="search" name="search">
                         </div>
                     </div>
                     <div class="col-sm-1 my-1">
@@ -24,6 +24,31 @@
                     </div>
                 </div>
             </form>
+            <form action="/searchWithDate" method="GET">
+                @csrf
+                <div class="form-row align-items-center">
+                    <div class="col-sm-5 my-1">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">Data Inicial</div>
+                            </div>
+                            <input type="text" class="form-control single_date_picker" id="initialDate" name="initialDate">
+                        </div>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">Data Final </div>
+                            </div>
+                            <input type="text" class="form-control single_date_picker" id="finalDate" name="finalDate">
+                        </div>
+                    </div>
+                    <div class="col-sm-1 my-1">
+                        <button type="submit" class="btn btn-primary" style='padding: 14.5px 16px;'>
+                            <i class='fa fa-search'></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+            
             <table class='table'>
                 <tr>
                     <th scope="col">
