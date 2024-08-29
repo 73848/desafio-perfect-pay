@@ -40,6 +40,7 @@ Route::get('/edit-sale/{sale}', [Sales::class, 'dataToEditSales']);
 Route::put('/edit-sale/{sale}', [Sales::class, 'editSale']);
 Route::post('/sales',[Sales::class, 'create']);
 Route::get('/search', [Sales::class, 'search']);
+Route::get('/searchWithDate', [Sales::class, 'searchWithDate']);
 
 
 

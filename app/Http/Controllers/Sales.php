@@ -97,4 +97,18 @@ class Sales extends Controller
 
         return view('dashboard', ['sales' => $sales, 'products' => $products]);
     }
+    public function searchWithDate(Request $request)
+    {
+        $inputForm = $request->validate(['initialDate' => 'required', 'finalDate' => 'required']);
+        $initialDate = $inputForm['initialDate'];
+        $finalDate = $inputForm['finalDate'];
+
+        $initialDate = aplicacao_banco_de_dados_($initialDate);
+        $finalDate = aplicacao_banco_de_dados_($finalDate);
+
+        $products = get_products_data();
+        $sales = get_sales_betwen_dates($initialDate, $finalDate);
+        
+        return view('dashboard', ['sales' => $sales, 'products' => $products]);
+    }
 }
