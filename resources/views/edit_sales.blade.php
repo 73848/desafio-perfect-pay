@@ -20,7 +20,7 @@
                 <div class="form-group">
                     <label for="product">Produto</label>
                     <select id="product" name="product_id"  class="form-control">
-                        <option selected>{{$sale->products_name}}</option>
+                        <option selected value = "{{$sale->product_id}}">{{$sale->products_name}}</option>
                         @foreach ($products as $product)
                         <option value = "{{$product->id}}">{{$product->name}}</option>
                         @endforeach

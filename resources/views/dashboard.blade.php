@@ -1,5 +1,10 @@
 @extends('layout')
 @section('content')
+@if (session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
     <h1>Dashboard de vendas</h1>
     <div class='card mt-3'>
         <div class='card-body'>
