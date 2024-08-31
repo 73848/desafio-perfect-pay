@@ -21,7 +21,7 @@ class ProductFactory extends Factory
     {
         return [
             'id' => fake()->unique()->numerify(),
-            'name' => fake()->randomElement([
+            'name' => fake()->unique()->randomElement([
                 'iPhone 14', 
                 'Samsung Galaxy S23', 
                 'Google Pixel 7',

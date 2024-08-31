@@ -77,7 +77,7 @@ class Sales extends Controller
 
         $client = Client::find($client_id);
 
-        $client->products()->update( [
+        $client->products()->updateExistingPivot( $product_id,[
             'product_id' => $product_id,
             'date' => $dateFormat,
             'quantity' => $quantity,

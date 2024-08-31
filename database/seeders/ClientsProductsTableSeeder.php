@@ -19,7 +19,7 @@ class ClientsProductsTableSeeder extends Seeder
     public function run()
     {
         foreach(Product::all( ) as $product){
-            $client = Client::inRandomOrder()->take(rand(1,15))->pluck('id')->toArray();
+            $client = Client::inRandomOrder()->take(rand(1,10))->pluck('id')->toArray();
             $product->clients()->attach($client, [
                 'quantity' => fake()->numerify('#'), 
                 'date' => fake()->date('Y_m_d') ,
