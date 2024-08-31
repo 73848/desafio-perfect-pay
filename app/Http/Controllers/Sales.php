@@ -93,7 +93,6 @@ class Sales extends Controller
         $products = get_products_data();
         $sales = get_especific_sales_by_client_product($search);
 
-
         return view('dashboard', ['sales' => $sales, 'products' => $products]);
     }
     public function searchWithDate(Request $request)

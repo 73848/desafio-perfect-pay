@@ -31,9 +31,10 @@ class SalesCreated extends TestCase
         'date' => '2024-08-30',
         'discount' => 20,
         'status' => 'Aprovado'] ;
-        $client->products()->attach($client ,  $salesData);
+        $client->products()->attach($product->id ,  $salesData);
 
         $this->assertDatabaseHas('client_products', ['product_id' => $product->id, 'client_id'=> $client->id]);
+        
     }
 
 
