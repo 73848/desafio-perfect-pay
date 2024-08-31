@@ -70,7 +70,7 @@ class ProductFactory extends Factory
             ]
             ),
             'description' => fake()->sentence(),
-            'price' => fake()->numberBetween(0,1000)
+            'price' => fake()->numberBetween(100,1000)
         ];
     }
 }

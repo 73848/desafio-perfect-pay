@@ -18,8 +18,8 @@ function banco_de_dados_aplicacao($date_from_db)
 
 function get_sales_data($id = false)
 {
-    if($id){
-       $sales =  DB::table('client_products')
+    if ($id) {
+        $sales =  DB::table('client_products')
             ->join('client', 'client_products.client_id', '=', 'client.id')
             ->join('products', 'client_products.product_id', '=', 'products.id')
             ->select(
@@ -30,8 +30,7 @@ function get_sales_data($id = false)
             )
             ->where('client_products.id', '=',  $id)
             ->first();
-    }
-    else{
+    } else {
         $sales = DB::table('client_products')
             ->join('client', 'client_products.client_id', '=', 'client.id')
             ->join('products', 'client_products.product_id', '=', 'products.id')
@@ -47,7 +46,7 @@ function get_especific_sales_by_client_product($search, $pagination = 5)
         ->join('client', 'client_products.client_id', '=', 'client.id')
         ->join('products', 'client_products.product_id', '=', 'products.id')
         ->where('client.name', '=', $search)
-        ->orWhere('products.name','=',$search)
+        ->orWhere('products.name', '=', $search)
         ->select(
             'client_products.*',
             'client.name as client_name',
@@ -57,18 +56,19 @@ function get_especific_sales_by_client_product($search, $pagination = 5)
     return $result;
 }
 
-function get_sales_betwen_dates($initialDate, $finalDate){
+function get_sales_betwen_dates($initialDate, $finalDate)
+{
     $sales = DB::table('client_products')
-            ->join('client', 'client_products.client_id', '=', 'client.id')
-            ->join('products', 'client_products.product_id', '=', 'products.id')
-            ->whereBetween('date', [$initialDate, $finalDate])
-            ->select(
-                'client_products.*',
-                'client.name as client_name',
-                'products.name as products_name',
-                'products.price as products_price'
-            )->get();
-            return $sales;
+        ->join('client', 'client_products.client_id', '=', 'client.id')
+        ->join('products', 'client_products.product_id', '=', 'products.id')
+        ->whereBetween('date', [$initialDate, $finalDate])
+        ->select(
+            'client_products.*',
+            'client.name as client_name',
+            'products.name as products_name',
+            'products.price as products_price'
+        )->get();
+    return $sales;
 }
 
 function get_products_data()
