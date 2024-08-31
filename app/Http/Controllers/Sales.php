@@ -77,13 +77,12 @@ class Sales extends Controller
 
         $client = Client::find($client_id);
 
-        $client->products()->updateExistingPivot( $product_id,[
-            'product_id' => $product_id,
+        DB::table('client_products')->where('id', $id)->update(['product_id' => $product_id,
             'date' => $dateFormat,
             'quantity' => $quantity,
             'discount' => $discount,
-            'status' => $status
-        ]);
+            'status' => $status]);
+
 
         return redirect('/')->with('sucess','Edicao feita com sucesso!');
     }
