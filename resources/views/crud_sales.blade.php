@@ -1,6 +1,11 @@
 @extends('layout')
 
 @section('content')
+@if (session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
     <h1>Adicionar / Editar Venda</h1>
     @if ($errors->any())
     <div class="alert alert-danger">

@@ -44,7 +44,7 @@ class Sales extends Controller
                 'status' => $status
             ]
         );
-        return redirect('/sales');
+        return redirect('/sales')->with('sucess','Edicao feita com sucesso!');
     }
     public function dataToEditSales($id)
     {
@@ -58,7 +58,7 @@ class Sales extends Controller
         $inputForm = $request->validate(
             [
                 'client_id' => 'required',
-                'product_id' =>   'required',
+                'product_id' =>   'required|',
                 'date' =>   'required',
                 'quantity' =>   'required',
                 'discount' =>   'required',
@@ -85,7 +85,7 @@ class Sales extends Controller
             'status' => $status
         ]);
 
-        return redirect('/');
+        return redirect('/')->with('sucess','Edicao feita com sucesso!');
     }
     public function search(Request $request)
     {
