@@ -7,8 +7,8 @@ use App\Models\Product;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
-# php artisan test --filter=Requisicao_banco_de_dados
-class Requisicao_banco_de_dados extends TestCase
+# php artisan test --filter=RequisicaoBancoDeDados
+class RequisicaoBancoDeDados extends TestCase
 {
     use RefreshDatabase;
 

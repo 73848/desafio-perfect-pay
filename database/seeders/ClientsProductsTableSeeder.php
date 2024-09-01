@@ -20,8 +20,7 @@ class ClientsProductsTableSeeder extends Seeder
     {
         foreach(Product::all( ) as $product){
             $client = Client::inRandomOrder()->take(rand(1,15))->pluck('id')->toArray();
-            dd($product);
-            $discount =  validandoDesconto($product['price']);
+            $discount =  validandoDesconto($product['price'], fake()->numerify('##'));
             $product->clients()->attach($client, [
                 'quantity' => fake()->numerify('#'), 
                 'date' => fake()->date('Y_m_d') ,
