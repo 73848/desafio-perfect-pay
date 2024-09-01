@@ -76,5 +76,13 @@ function get_products_data()
     $products = DB::table('products')->orderBy('name')->paginate(10);
     return $products;
 }
+function validandoDesconto($productPrice){
+    $dicount = fake()->numerify('##');
+
+    if($dicount >= $productPrice ){
+         $discount = $productPrice*0.1;
+    }
+    return $dicount;
+};
 
 function discount_based_history_client() {}

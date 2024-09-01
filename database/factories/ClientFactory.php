@@ -23,7 +23,7 @@ class ClientFactory extends Factory
             'id' => fake()->unique()->numerify(),
             'name' => fake()->name(),
             'email' => fake()->email(),
-            'cpf' => fake()->numerify('###########'),
+            'cpf' => fake()->unique()->numerify('###########'),
         ];
     }
 }
