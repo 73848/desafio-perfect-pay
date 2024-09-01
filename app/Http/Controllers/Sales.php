@@ -75,8 +75,8 @@ class Sales extends Controller
 
         $dateFormat = aplicacao_banco_de_dados_($date);
 
-        $client = Client::find($client_id);
-
+        $product = Product::find($product_id);
+        $discount = validandoDesconto($discount, $product->price);
         DB::table('client_products')->where('id', $id)->update(['product_id' => $product_id,
             'date' => $dateFormat,
             'quantity' => $quantity,

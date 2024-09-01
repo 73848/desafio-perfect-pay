@@ -71,9 +71,13 @@ function get_sales_betwen_dates($initialDate, $finalDate)
     return $sales;
 }
 
-function get_products_data()
+function get_products_data($id=false)
 {
-    $products = DB::table('products')->orderBy('name')->paginate(10);
+    if($id){
+        $products = DB::table('products')->where('id', $id)->get();
+    }else{
+        $products = DB::table('products')->orderBy('name')->paginate(10);
+    }
     return $products;
 }
 function validandoDesconto($productPrice, $discount){
