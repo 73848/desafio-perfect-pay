@@ -20,6 +20,7 @@ return new class extends Migration
             $table->foreignId('client_id')->constrained()->onDelete('cascade');
             $table->integer('quantity');
             $table->integer('discount');
+            $table->integer('price_sales');
             $table->string('status');
             $table->date('date');
             $table->timestamps();

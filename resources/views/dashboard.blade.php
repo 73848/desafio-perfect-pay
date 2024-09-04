@@ -71,6 +71,7 @@
                         Ações
                     </th>
                 </tr>
+
                 @foreach ($sales as $sale)
                     <tr>
                         <td>
@@ -80,7 +81,7 @@
                             {{ banco_de_dados_aplicacao($sale->date) }}
                         </td>
                         <td>
-                            R${{ $sale->products_price }},00
+                            R${{ $sale->price_sales }},00
                         </td>
                         <td>
                             <a href='/edit-sale/{{ $sale->id }}' class='btn btn-primary'>Editar</a>

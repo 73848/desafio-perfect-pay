@@ -23,6 +23,6 @@ class Product extends Model
     protected $table = 'products';
     public function clients() 
     {
-        return $this->belongsToMany(Client::class, 'client_products','product_id', 'client_id' )->withPivot('quantity', 'discount', 'status','date', 'created_at');
+        return $this->belongsToMany(Client::class, 'client_products','product_id', 'client_id' )->withPivot('quantity', 'discount','price_sales', 'status','date', 'created_at');
     }
 }

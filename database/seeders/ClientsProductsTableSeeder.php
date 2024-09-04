@@ -21,10 +21,13 @@ class ClientsProductsTableSeeder extends Seeder
         foreach(Product::all( ) as $product){
             $client = Client::inRandomOrder()->take(rand(1,15))->pluck('id')->toArray();
             $discount =  validandoDesconto($product['price'], fake()->numerify('##'));
+            $quantity = fake()->numerify('#');
+            $sales_price = $quantity * ($product['price']-$discount);
             $product->clients()->attach($client, [
-                'quantity' => fake()->numerify('#'), 
+                'quantity' => $quantity, 
                 'date' => fake()->date('Y_m_d') ,
                 'discount' => $discount, 
+                'price_sales' => $sales_price, 
                 'status' => fake()->randomElement(['Aprovado', 'Cancelado', 'Devolvido'])]);
         };
     }
