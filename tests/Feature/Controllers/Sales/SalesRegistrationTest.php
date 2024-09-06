@@ -31,7 +31,8 @@ class SalesCreated extends TestCase
         $salesData = [
             'quantity' => 4,
             'date' => '2024-08-30',
-            'discount' => 20,
+            'discount' => 100,
+            'price_sales'=> 2800 ,
             'status' => 'Aprovado'
         ];
 
