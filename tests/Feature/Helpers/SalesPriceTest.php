@@ -38,7 +38,7 @@ class SalesPrice extends TestCase
       
         $salePrice = salesPrice($salesDataOne['quantity'], $salesDataOne['discount'], $product['price']);
 
-        $this->assertEquals(2800, $salePrice);
+        $this->assertEquals(3100, $salePrice);
         
     }
 

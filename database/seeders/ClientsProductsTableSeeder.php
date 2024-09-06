@@ -22,7 +22,7 @@ class ClientsProductsTableSeeder extends Seeder
             $client = Client::inRandomOrder()->take(rand(1,15))->pluck('id')->toArray();
             $discount =  validandoDesconto($product['price'], fake()->numerify('##'));
             $quantity = fake()->numerify('#');
-            $sales_price = $quantity * ($product['price']-$discount);
+            $sales_price = salesPrice($quantity,$discount,$product['price']  );
             $product->clients()->attach($client, [
                 'quantity' => $quantity, 
                 'date' => fake()->date('Y_m_d') ,
