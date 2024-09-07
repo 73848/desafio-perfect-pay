@@ -13,16 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table){
+        Schema::create('roles' , function (Blueprint $table){
             $table->id();
-            $table->foreignId('role_id');
+            $table->foreignId('user_id')->unique();
             $table->string('name');
-            $table->string('email')->unique();
-            $table->float('password');
-            $table->timestamps();
         });
     }
-
+    
     /**
      * Reverse the migrations.
      *
