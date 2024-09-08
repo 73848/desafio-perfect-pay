@@ -4,9 +4,9 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Client;
+use App\Models\Users;
 
-class ClientTableSeeder extends Seeder
+class UsersTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,6 +15,6 @@ class ClientTableSeeder extends Seeder
      */
     public function run()
     {
-        Client::factory(15)->create();
+        Users::factory(15)->create();
     }
 }

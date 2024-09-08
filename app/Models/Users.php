@@ -14,9 +14,10 @@ class Users extends Authenticatable
 
     /**
      * The attributes that are mass assignable.
-     *
+     *i
      * @var array<int, string>
      */
+    public $timestamps = false;
     protected $fillable = [
         'role_id',
         'name',
@@ -25,7 +26,7 @@ class Users extends Authenticatable
     ];
     // serve para buscar a funcao de um usuario
     public function role(){
-        return $this->belongsTo(Roles::class, 'user_id');
+        return $this->belongsTo(Roles::class);
     }
 
   

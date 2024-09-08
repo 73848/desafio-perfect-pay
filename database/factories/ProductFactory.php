@@ -67,7 +67,7 @@ class ProductFactory extends Factory
                 'Dawn Ultra', 
                 'Fairy Platinum', 
                 'Palmolive Essential Clean'
-            ]
+            ], false
             ),
             'description' => fake()->sentence(),
             'price' => fake()->numberBetween(100,1000)
