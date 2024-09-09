@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('role_id');
             $table->string('name');
             $table->string('email')->unique();
-            $table->float('password');
+            $table->string('password');
             $table->timestamps();
         });
     }

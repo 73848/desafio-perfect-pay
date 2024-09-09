@@ -22,11 +22,12 @@ class UsersFactory extends Factory
     public function definition()
     {
         $role = Roles::all();
+        $password = crypted(fake()->word());
         return [
             'name' => fake()->name(),
             'email' => fake()->safeEmail(),
             'role_id' => fake()->randomElement($role),
-            'password' => '432432', // password
+            'password' => $password, // password
         ];
     }
 }
