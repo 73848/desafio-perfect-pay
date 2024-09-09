@@ -91,4 +91,6 @@ function salesPrice($quantity, $discount, $priceProduct){
     return  $salePrice;
 
 }
+
+
 function discount_based_history_client() {}
