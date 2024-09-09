@@ -21,11 +21,11 @@ class UsersFactory extends Factory
 
     public function definition()
     {
-        $role = Roles::inRandomOrder()->take(rand(1,15))->pluck('id')->toArray();
+        $role = Roles::all();
         return [
             'name' => fake()->name(),
             'email' => fake()->safeEmail(),
-            'role_id' => 1,
+            'role_id' => fake()->randomElement($role),
             'password' => '432432', // password
         ];
     }
