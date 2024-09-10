@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Users;
+use Illuminate\Foundation\Auth\User;
+
 class UsersController extends Controller
 {
     public function create(Request $request){
@@ -22,7 +24,29 @@ class UsersController extends Controller
         Users::create($inputForm);
 
         return redirect(''); // redireciona para pagina de login
-        
+
+    }
+
+    public function edit(Users $users, Request $request){
+        // implementa bloqueio para que apenas admin possam editar login de usuarios
+        $input = $request->validate(
+          [ 
+           'role_id' => 'required',
+            'name'=> 'required',
+            'email'=> 'required|unique:client',
+            'password'=> 'required|min:15',
+          ]
+       );
+       // fazer strip_tags no request do form de update tambem
+
+       $users['role_id'] = $input['role_id'];
+       $users['name'] = $input['name'];
+       $users['email'] = $input['email'];
+       $users['password'] = $input['password'];
+
+       $users->update($input);
+
+       return redirect('/');
 
     }
 }
