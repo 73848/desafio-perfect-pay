@@ -20,6 +20,11 @@ class UserCreated extends TestCase
             'email' => 'DorivalsonDuarte@gmail.com',
             'password' => crypted('salmao')
         ];
+        $user = Users::create($userData);
+        $this->assertDatabaseHas('users', ['role_id' => $user->role_id, 'name' => $user->name,
+         'email'=> $user->email, 'password' =>$user->password]);
+
+         $this->assertEquals(true, verifyPassword('salmao', $user->password));
 
      
     }
