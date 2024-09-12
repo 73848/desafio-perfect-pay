@@ -95,4 +95,7 @@ function salesPrice($quantity, $discount, $priceProduct){
 function crypted($password){
     return password_hash($password, PASSWORD_DEFAULT);
 }
+function verifyPassword($password, $stringHash){
+    return password_verify($password, $stringHash);
+}
 function discount_based_history_client() {}
