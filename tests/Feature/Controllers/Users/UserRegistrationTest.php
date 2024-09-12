@@ -28,4 +28,25 @@ class UserCreated extends TestCase
 
      
     }
+
+    public function test_user_are_updated_correctly()
+    {
+        $userUpdateData = [
+            'role_id' => '1',
+            'name' => 'Dorivalson Duarte',
+            'email' => 'DuarteDorivalson@gmail.com',
+            'password' => crypted('atum')
+        ];
+
+        $user = Users::where('name', 'Dorivalson Duarte')->first();
+
+        $user->update($userUpdateData);
+
+        $this->assertDatabaseHas('users', ['role_id' => $userUpdateData['role_id'], 'name' => $userUpdateData['name'],
+         'email'=> $userUpdateData['email'], 'password' =>$userUpdateData['password']]);
+
+         $this->assertEquals(true, verifyPassword('atum', $user->password));
+
+     
+    }
 }

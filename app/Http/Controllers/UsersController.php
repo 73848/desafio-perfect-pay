@@ -39,7 +39,7 @@ class UsersController extends Controller
        );
        // fazer strip_tags no request do form de update tambem
 
-       $users['role_id'] = $input['role_id'];
+       $users['role_id'] = $input['role_id']; 
        $users['name'] = $input['name'];
        $users['email'] = $input['email'];
        $users['password'] = $input['password'];
