@@ -6,12 +6,19 @@ use App\Http\Controllers\PassingData;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\Sales;
-
+use App\Http\Controllers\UsersController;
 
 /*
     DASHBOARD
 */
 Route::get('/', [ProductController::class, 'showDashboard']);
+
+/*
+USUARIOS: GET/POST/UPDATE/DELETE    
+*/
+Route::get('/login', [UsersController::class, 'index']);
+Route::post('/registerUser', [UsersController::class, 'create']);
+
 
 /*
 CLIENTES: GET/POST/UPDATE/EDIT/DELETE

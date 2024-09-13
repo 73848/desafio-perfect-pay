@@ -46,7 +46,6 @@ class UserCreated extends TestCase
          'email'=> $userUpdateData['email'], 'password' =>$userUpdateData['password']]);
 
          $this->assertEquals(true, verifyPassword('atum', $user->password));
-
      
     }
 }

@@ -21,7 +21,7 @@ class RolesFactory extends Factory
     public function definition()
     {
         return [
-            'name' => fake()->unique()->randomElement(['admin', 'seller'], false),
+            'name' => fake()->unique()->randomElement(['admin', 'seller'], false),// pode have inconsistencia nessa parte pois o codigo do admin pode ser tanto 01 quanto 02 no db
         ];
     }
 }

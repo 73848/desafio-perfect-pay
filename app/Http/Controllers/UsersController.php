@@ -8,12 +8,16 @@ use Illuminate\Foundation\Auth\User;
 
 class UsersController extends Controller
 {
+
+    public function index(){
+        return view('registration_users');
+    }
     public function create(Request $request){
         $inputForm = $request->validate([
             'role_id' => 'required',
             'name'=> 'required',
             'email'=> 'required|unique:client',
-            'password'=> 'required|min:15',
+            'password'=> 'required|min:8',
         ]);
 
         $inputForm['name'] = strip_tags($inputForm['name'] );
@@ -23,7 +27,7 @@ class UsersController extends Controller
 
         Users::create($inputForm);
 
-        return redirect(''); // redireciona para pagina de login
+        return redirect('/')->with('sucess', "Vendedor cadastrado com sucesso!"); // redireciona para pagina de login
 
     }
 
@@ -34,7 +38,7 @@ class UsersController extends Controller
            'role_id' => 'required',
             'name'=> 'required',
             'email'=> 'required|unique:client',
-            'password'=> 'required|min:15',
+            'password'=> 'required|min:8',
           ]
        );
        // fazer strip_tags no request do form de update tambem
@@ -46,7 +50,7 @@ class UsersController extends Controller
 
        $users->update($input);
 
-       return redirect('/');
+       return redirect('/sales');
 
     }
 }
