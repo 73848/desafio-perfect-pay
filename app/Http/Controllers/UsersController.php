@@ -12,7 +12,9 @@ class UsersController extends Controller
     public function index(){
         return view('registration_users');
     }
-    
+    public function indexLogin(){
+        return view('login_users');
+    }
     public function login(Request $request){
         $input = $request->validate([
             'email'=> 'required|unique:client',
