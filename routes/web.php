@@ -16,7 +16,7 @@ Route::get('/', [ProductController::class, 'showDashboard']);
 /*
 USUARIOS: GET/POST/UPDATE/DELETE    
 */
-Route::get('/login', [UsersController::class, 'index']);
+Route::get('/cadastro', [UsersController::class, 'index']);
 Route::post('/registerUser', [UsersController::class, 'create']);
 
 

@@ -12,6 +12,27 @@ class UsersController extends Controller
     public function index(){
         return view('registration_users');
     }
+    
+    public function login(Request $request){
+        $input = $request->validate([
+            'email'=> 'required|unique:client',
+            'password'=> 'required|min:8',
+        ]);
+
+        $email = Users::where('email', $input['email'])->first();
+        $password = Users::where('password', $input['password'])->first();
+
+        if($email){
+            if($password){
+                return redirect('/');
+            }
+            else{
+                return redirect('login'); // retornar os dados do usuario logado
+            }
+        }else {
+            return redirect('/login');
+        }
+    }
     public function create(Request $request){
         $inputForm = $request->validate([
             'role_id' => 'required',
