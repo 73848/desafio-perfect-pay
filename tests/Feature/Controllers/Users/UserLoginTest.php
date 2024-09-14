@@ -47,5 +47,32 @@ class UserLogged extends TestCase
         }
         $response->assertViewIs('dashboard');
     }
-   
+
+
+     public function test_user_are_logged_wrongly_password()
+    { 
+        
+        $inputUser = [
+            'role_id' => '1',
+            'name' => 'Dorivalson Duarte',
+            'email' => 'DorivalsonDuarte@gmail.com',
+            'password' => 'atum'
+        ];
+
+        $userByEmail = Users::where('email', $inputUser['email'])->first();
+        $password = $userByEmail->password;
+        
+        if($userByEmail){
+            if(verifyPassword($inputUser['password'], $password)){
+                $response = $this->get('/');
+            }
+            else{
+                $response = $this->get('/login');
+            }
+        }else {
+            $response = $this->get('/cadastro');
+        }
+        $response->assertViewIs('login_users');
+    }
+
 }
