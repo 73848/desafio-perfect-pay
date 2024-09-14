@@ -48,4 +48,5 @@ class UserCreated extends TestCase
          $this->assertEquals(true, verifyPassword('atum', $user->password));
      
     }
+   
 }
