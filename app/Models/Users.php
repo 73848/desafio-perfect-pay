@@ -17,6 +17,8 @@ class Users extends Authenticatable
      *i
      * @var array<int, string>
      */
+
+
     public $timestamps = false;
     protected $fillable = [
         'role_id',
@@ -28,6 +30,5 @@ class Users extends Authenticatable
     public function role(){
         return $this->belongsTo(Roles::class);
     }
-
   
 }

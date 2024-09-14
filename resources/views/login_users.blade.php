@@ -1,17 +1,13 @@
 @extends('layout')
 @section('content')
-@if ($errors->any())
+@if (session()->has('message'))
 <div class="alert alert-danger">
-    <ul>
-        @foreach ($errors->all() as $error)
-            <li>{{ $error }}</li>
-        @endforeach
-    </ul>
+  {{session('message')}}
 </div>
 @endif
 <div class="card">
     <div class='card-body'>
-        <form action="/loginUsers" method="GET">
+        <form action="/loginUsers" method="POST">
             @csrf
             <h5>Entre</h5>
             
@@ -27,7 +23,7 @@
                 <label for="password">Senha</label>
                 <input type="password" class="form-control" name="password" placeholder="Password">
             </div>
-            <button type="submit" class="btn btn-primary">Cadastrar</button>
+            <button type="submit" class="btn btn-primary">Entrar</button>
             <br>
         </form>
 </div>

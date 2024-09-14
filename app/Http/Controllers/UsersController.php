@@ -22,17 +22,16 @@ class UsersController extends Controller
         ]);
 
         $email = Users::where('email', $input['email'])->first();
-        $password = Users::where('password', $input['password'])->first();
-
+        $password = $email->password;
         if($email){
-            if($password){
+            if(verifyPassword($input['password'], $password)){
                 return redirect('/');
             }
             else{
-                return redirect('login'); // retornar os dados do usuario logado
+                return redirect()->back()->with(['message'=> 'Senha incorreta']); // retornar os dados do usuario logado
             }
         }else {
-            return redirect('/login');
+            return redirect()->back()->with('message', 'Usuario nao encontrado');;
         }
     }
     public function create(Request $request){
@@ -47,6 +46,7 @@ class UsersController extends Controller
         $inputForm['email'] = strip_tags($inputForm['email'] );
         $inputForm['role_id'] = strip_tags($inputForm['role_id'] );
         $inputForm['password'] = strip_tags($inputForm['password'] );
+        $inputForm['password'] = crypted($inputForm['password']);
 
         Users::create($inputForm);
 
