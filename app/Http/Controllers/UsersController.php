@@ -22,16 +22,15 @@ class UsersController extends Controller
         ]);
 
         $email = Users::where('email', $input['email'])->first();
-        $password = $email->password;
         if($email){
-            if(verifyPassword($input['password'], $password)){
+            if(verifyPassword($input['password'], $email->password)){
                 return redirect('/');
             }
             else{
                 return redirect()->back()->with(['message'=> 'Senha incorreta']); // retornar os dados do usuario logado
             }
         }else {
-            return redirect()->back()->with('message', 'Usuario nao encontrado');;
+            return redirect('/cadastro')->with('message', 'Usuario nao encontrado');;
         }
     }
     public function create(Request $request){

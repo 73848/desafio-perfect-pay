@@ -7,6 +7,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Tests\TestCase;
 use Illuminate\Support\Facades\DB;
+
 # php artisan test --filter=UserLogged
 class UserLogged extends TestCase
 {
@@ -32,11 +33,10 @@ class UserLogged extends TestCase
         ];
 
         $userByEmail = Users::where('email', $inputUser['email'])->first();
-        $password = $userByEmail->password;
         
         $this->assertEquals($userDB->email, $userByEmail->email);
         if($userByEmail){
-            if(verifyPassword($inputUser['password'], $password)){
+            if(verifyPassword($inputUser['password'], $userByEmail->password)){
                 $response = $this->get('/');
             }
             else{
@@ -60,10 +60,9 @@ class UserLogged extends TestCase
         ];
 
         $userByEmail = Users::where('email', $inputUser['email'])->first();
-        $password = $userByEmail->password;
-        
+
         if($userByEmail){
-            if(verifyPassword($inputUser['password'], $password)){
+            if(verifyPassword($inputUser['password'], $userByEmail->password)){
                 $response = $this->get('/');
             }
             else{
@@ -73,6 +72,33 @@ class UserLogged extends TestCase
             $response = $this->get('/cadastro');
         }
         $response->assertViewIs('login_users');
+    }
+    public function test_user_are_logged_wrongly_email()
+    { 
+        $this->withoutExceptionHandling();
+
+        $inputUser = [
+            'role_id' => '1',
+            'name' => 'Dorivalson Duarte',
+            'email' => 'DuarteDorivalson@gmail.com',
+            'password' => 'salmao'
+        ];
+
+        $userByEmail = Users::where('email', $inputUser['email'])->first();
+        if($userByEmail){
+            if(verifyPassword($inputUser['password'], $userByEmail->password)){
+                $response = $this->get('/');
+            }
+            else{
+                $response = $this->get('/login');
+            }
+        }
+        else {
+            $response = $this->get('/cadastro');
+        }
+
+        $response->assertViewIs('registration_users');
+
     }
 
 }
