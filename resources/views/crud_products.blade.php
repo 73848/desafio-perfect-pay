@@ -2,13 +2,9 @@
 
 @section('content')
     <h1>Adicionar / Editar Produto</h1>
-    @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
+    @if (session()->has('message'))
+    <div class="alert alert-success">
+      {{session('message')}}
     </div>
     @endif
     <div class='card'>

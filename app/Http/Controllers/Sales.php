@@ -84,7 +84,7 @@ class Sales extends Controller
             'status' => $status]);
 
 
-        return redirect('/')->with('sucess','Edicao feita com sucesso!');
+        return redirect('/')->with(['message','Edicao feita com sucesso!']);
     }
     public function search(Request $request)
     {
@@ -93,7 +93,7 @@ class Sales extends Controller
         $products = get_products_data();
         $sales = get_especific_sales_by_client_product($search);
 
-        return view('dashboard', ['sales' => $sales, 'products' => $products]);
+        return view('dashboard', ['sales' => $sales, 'products' => $products])->with(['message','Resultados encontrados']);
     }
     public function searchWithDate(Request $request)
     {

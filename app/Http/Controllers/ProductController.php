@@ -8,14 +8,14 @@ use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {   
-  
+    // correcao de bug que faz com que usuario submita formularios multiplas vezes
     // cadastro de produto
     public function create(Request $request){
         $input = $request->validate(
            [ 
             'name' =>   'required|max:20',
             'description' =>   'required|max:55',
-            'price' =>   'required',
+            'price' =>   'required',// é necessario correcao aqui para impedir que usuarios digitem valors com ',' separando as casas decimasi
            ]
         );
 
@@ -24,7 +24,7 @@ class ProductController extends Controller
         $input[ 'price']= strip_tags( $input[ 'price'])  ;
 
         Product::create($input);
-        return redirect('/products');
+        return redirect('/products')->with(['message' => 'roduto cadastrado com sucesso!']);
       }
 
       public function showSales(){
@@ -58,7 +58,7 @@ class ProductController extends Controller
        $product['price'] = $input['price'];
 
        $product->update($input);
-       return redirect('/');
+       return redirect('/')->with(['message' => 'Produto atualizado com sucesso!']);
       }
       
       public function delete(Product $product){

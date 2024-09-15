@@ -1,6 +1,10 @@
 @extends('layout')
 @section('content')
-
+@if (session()->has('message'))
+<div class="alert alert-danger">
+  {{session('message')}}
+</div>
+@endif
 <div class="card">
     <div class='card-body'>
         <form action="/registerUser" method="POST">

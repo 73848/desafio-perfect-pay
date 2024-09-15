@@ -21,16 +21,16 @@ class UsersController extends Controller
             'password'=> 'required|min:8',
         ]);
 
-        $email = Users::where('email', $input['email'])->first();
+        $email = Users::where('email', $input['email'])->first();   
         if($email){
             if(verifyPassword($input['password'], $email->password)){
-                return redirect('/');
+                return redirect('/')->with(['message' => 'Seja bem vindo!', 'user'=> $email->name,  ]);
             }
             else{
-                return redirect()->back()->with(['message'=> 'Senha incorreta']); // retornar os dados do usuario logado
+                return redirect()->back()->with(['message'=> 'Senha incorreta.']); // retornar os dados do usuario logado
             }
         }else {
-            return redirect('/cadastro')->with('message', 'Usuario nao encontrado');;
+            return redirect('/cadastro')->with('message', 'Usuario não encontrado. Por favor, cadastre-se.');;
         }
     }
     public function create(Request $request){
