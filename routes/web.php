@@ -9,7 +9,6 @@ use App\Http\Controllers\UsersController;
 /*
     DASHBOARD
 */
-Route::get('/', [ProductController::class, 'showDashboard']);
 
 /*
 USUARIOS: GET/POST/UPDATE/DELETE    
@@ -34,12 +33,14 @@ PRODUTOS:  GET/POST/UPDATE/EDIT/DELETE
 
 Route::get('/products', function () {
 return view('crud_products');});
+
 Route::controller(ProductController::class)->group(function (){
+    Route::get('/', 'showDashboard');
     Route::get('/edit-product/{product}', 'showProduct');
-    Route::get('/sales',  'showSales');
     Route::put('/edit-product/{product}', 'edit');
     Route::delete('/edit-product/{product}',  'delete');
     Route::post('/products','create');
+    Route::get('/sales',  'showSales');
 });
 
 

@@ -37,7 +37,7 @@ class UsersController extends Controller
         $inputForm = $request->validate([
             'role_id' => 'required',
             'name'=> 'required',
-            'email'=> 'required|unique:client|email',
+            'email'=> 'required|unique:users|email',
             'password'=> 'required|min:8',
         ]);
 
