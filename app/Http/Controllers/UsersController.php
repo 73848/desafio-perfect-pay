@@ -37,7 +37,7 @@ class UsersController extends Controller
         $inputForm = $request->validate([
             'role_id' => 'required',
             'name'=> 'required',
-            'email'=> 'required|unique:client',
+            'email'=> 'required|unique:client|email',
             'password'=> 'required|min:8',
         ]);
 
@@ -49,7 +49,7 @@ class UsersController extends Controller
 
         Users::create($inputForm);
 
-        return redirect('/')->with('sucess', "Vendedor cadastrado com sucesso!"); // redireciona para pagina de login
+        return redirect('/login')->with('message', "Vendedor cadastrado com sucesso!"); // redireciona para pagina de login
 
     }
 
