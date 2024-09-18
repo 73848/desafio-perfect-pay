@@ -1,8 +1,6 @@
 <?php
 
 use App\Http\Controllers\ClientController;
-use App\Models\Product;
-use App\Http\Controllers\PassingData;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\Sales;
@@ -16,11 +14,12 @@ Route::get('/', [ProductController::class, 'showDashboard']);
 /*
 USUARIOS: GET/POST/UPDATE/DELETE    
 */
-Route::get('/cadastro', [UsersController::class, 'index']);
-Route::get('/login', [UsersController::class, 'indexLogin']);
-Route::post('/registerUser', [UsersController::class, 'create']);
-Route::post('/loginUsers', [UsersController::class, 'login']);
-
+Route::controller(UsersController::class)->group(function (){
+    Route::get('/cadastro',  'index');
+    Route::get('/login',  'indexLogin');
+    Route::post('/registerUser',  'create');
+    Route::post('/loginUsers',  'login');
+});
 
 /*
 CLIENTES: GET/POST/UPDATE/EDIT/DELETE
@@ -35,21 +34,26 @@ PRODUTOS:  GET/POST/UPDATE/EDIT/DELETE
 
 Route::get('/products', function () {
 return view('crud_products');});
-Route::get('/edit-product/{product}', [ProductController::class, 'showProduct']);
-Route::put('/edit-product/{product}', [ProductController::class, 'edit']);
-Route::delete('/edit-product/{product}', [ProductController::class, 'delete']);
-Route::post('/products',[ProductController::class, 'create']);
+Route::controller(ProductController::class)->group(function (){
+    Route::get('/edit-product/{product}', 'showProduct');
+    Route::get('/sales',  'showSales');
+    Route::put('/edit-product/{product}', 'edit');
+    Route::delete('/edit-product/{product}',  'delete');
+    Route::post('/products','create');
+});
+
 
 
 /*
 VENDAS: GET/POST/UPDATE/EDIT/DELETE
 */
-Route::get('/sales', [ProductController::class, 'showSales']);
-Route::get('/edit-sale/{sale}', [Sales::class, 'dataToEditSales']);
-Route::put('/edit-sale/{sale}', [Sales::class, 'editSale']);
-Route::post('/sales',[Sales::class, 'create']);
-Route::get('/search', [Sales::class, 'search']);
-Route::get('/searchWithDate', [Sales::class, 'searchWithDate']);
+Route::controller(Sales::class)->group(function (){
+    Route::get('/edit-sale/{sale}', 'dataToEditSales');
+    Route::put('/edit-sale/{sale}', 'editSale');
+    Route::post('/sales', 'create');
+    Route::get('/search',  'search');
+    Route::get('/searchWithDate', 'searchWithDate');
+});
 
 
 
