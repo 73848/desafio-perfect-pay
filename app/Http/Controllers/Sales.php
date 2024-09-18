@@ -29,6 +29,9 @@ class Sales extends Controller
         $quantity = strip_tags($inputForm['quantity']);
         $discount = strip_tags($inputForm['discount']);
         $status = strip_tags($inputForm['status']);
+        $product = Product::find($inputForm['product_id']);
+        $discount = validandoDesconto($discount, $product->price);
+        $price_sales = salesPrice($quantity, $discount, $product->price);
 
         // manipulando o formato da data antes de inserir no db para mais dúvidas, verifique a doc do PHP sobre 
         //a classe DateTime
@@ -41,6 +44,7 @@ class Sales extends Controller
                 'quantity' => $quantity,
                 'date' => $dateFormat,
                 'discount' => $discount,
+                'price_sales' => $price_sales,
                 'status' => $status
             ]
         );
@@ -72,15 +76,17 @@ class Sales extends Controller
         $quantity = strip_tags($inputForm['quantity']);
         $discount = strip_tags($inputForm['discount']);
         $status = strip_tags($inputForm['status']);
-
+        
         $dateFormat = aplicacao_banco_de_dados_($date);
-
+        
         $product = Product::find($product_id);
         $discount = validandoDesconto($discount, $product->price);
+        $price_sales = salesPrice($quantity, $discount, $product->price);
         DB::table('client_products')->where('id', $id)->update(['product_id' => $product_id,
             'date' => $dateFormat,
             'quantity' => $quantity,
             'discount' => $discount,
+            'price_sales' => $price_sales,
             'status' => $status]);
 
 

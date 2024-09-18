@@ -89,7 +89,6 @@ function validandoDesconto($productPrice, $discount){
 function salesPrice($quantity, $discount, $priceProduct){
     $salePrice = ($quantity*$priceProduct)-$discount;
     return  $salePrice;
-
 }
 
 function crypted($password){
