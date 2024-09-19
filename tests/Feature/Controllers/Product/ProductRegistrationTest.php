@@ -5,7 +5,6 @@ namespace Tests\Feature;
 use App\Http\Controllers\ProductController;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Tests\TestCase;
 use Illuminate\Support\Facades\Event;
@@ -31,8 +30,5 @@ class ProductRegistration extends TestCase
         $this->assertDatabaseHas('products',['description'=>'O melhor móvel da atualizade']);
         $this->assertDatabaseHas('products', ['price' => '800']);
     }
-
-
-
 
 }

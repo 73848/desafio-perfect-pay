@@ -4,7 +4,6 @@ namespace Tests\Feature;
 
 use App\Http\Controllers\ClientController;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Tests\TestCase;
 use Illuminate\Support\Facades\Event;
@@ -17,9 +16,6 @@ class ClientRegistration extends TestCase
     use RefreshDatabase;
     use WithoutMiddleware;
     public function test_client_are_set_correctly(){
-        $clientData = [
-            
-        ];
         Event::fake();
 
         $request = Request::create('/products', 'POST',[ 
