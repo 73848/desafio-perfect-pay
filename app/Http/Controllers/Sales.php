@@ -54,7 +54,7 @@ class Sales extends Controller
     {
         $products = DB::table('products')->paginate(10);
 
-        $sale = get_sales_data($id);
+        $sale = $this->get_sales_data($id);
         return view('edit_sales', ['sale' => $sale, 'products' => $products]);
     }
     public function editSale(Request $request, $id)
@@ -111,8 +111,48 @@ class Sales extends Controller
         $finalDate = aplicacao_banco_de_dados_($finalDate);
 
         $products = get_products_data();
-        $sales = get_sales_betwen_dates($initialDate, $finalDate);
+        $sales = $this->get_sales_betwen_dates($initialDate, $finalDate);
         
         return view('dashboard', ['sales' => $sales, 'products' => $products]);
     }
+
+   public function get_sales_data($id = false)
+{
+    if ($id) {
+        $sales =  DB::table('client_products')
+            ->join('client', 'client_products.client_id', '=', 'client.id')
+            ->join('products', 'client_products.product_id', '=', 'products.id')
+            ->select(
+                'client_products.*',
+                'client.name as client_name',
+                'products.name as products_name',
+                'products.price as products_price'
+            )
+            ->where('client_products.id', '=',  $id)
+            ->first();
+    } else {
+        $sales = DB::table('client_products')
+            ->join('client', 'client_products.client_id', '=', 'client.id')
+            ->join('products', 'client_products.product_id', '=', 'products.id')
+            ->select('client_products.*', 'client.name as client_name', 'products.name as products_name', 'products.price as products_price')
+            ->get();
+    }
+
+    
+    return $sales;
+}
+function get_sales_betwen_dates($initialDate, $finalDate)
+{
+    $sales = DB::table('client_products')
+        ->join('client', 'client_products.client_id', '=', 'client.id')
+        ->join('products', 'client_products.product_id', '=', 'products.id')
+        ->whereBetween('date', [$initialDate, $finalDate])
+        ->select(
+            'client_products.*',
+            'client.name as client_name',
+            'products.name as products_name',
+            'products.price as products_price'
+        )->get();
+    return $sales;
+}
 }

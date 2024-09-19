@@ -2,11 +2,14 @@
 
 namespace Tests\Feature;
 
-use App\Models\Client;
+use App\Http\Controllers\ClientController;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Tests\TestCase;
+use Illuminate\Support\Facades\Event;
+use Illuminate\Http\Request;
+
 
 # php artisan test --filter=ClientRegistration
 class ClientRegistration extends TestCase
@@ -15,16 +18,21 @@ class ClientRegistration extends TestCase
     use WithoutMiddleware;
     public function test_client_are_set_correctly(){
         $clientData = [
+            
+        ];
+        Event::fake();
+
+        $request = Request::create('/products', 'POST',[ 
             'name'=>'Jhonny Dogs',
             'email'=>'jhonyDogs@gmail.com',
-            'cpf'=>'000000000-00',
-        ];
+            'cpf'=>'000000000-00'
+        ]);
         
-        Client::factory()->create($clientData);
-        
-        $response = $this->post('/register', $clientData );
+        $controller = new ClientController;
+        $response = $controller->create($request);
 
-        $response->assertStatus(302);
+        $this->assertEquals(302, $response->getStatusCode());
+
         $this->assertDatabaseHas('client', ['email'=>'jhonyDogs@gmail.com']);
         $this->assertDatabaseHas('client',['name'=>'Jhonny Dogs']);
         $this->assertDatabaseHas('client', ['cpf'=>'000000000-00']);

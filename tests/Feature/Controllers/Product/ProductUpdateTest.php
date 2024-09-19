@@ -26,6 +26,8 @@ class ProductUpdate extends TestCase
             'price' => '10000',
         ];
 
+        
+
         $product = Product::factory()->create($productData);
         $product->update($productUpdate);
         
