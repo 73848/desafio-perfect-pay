@@ -36,12 +36,15 @@ Route::get('/products', function () {
 return view('crud_products');});
 
 Route::controller(ProductController::class)->group(function (){
-    Route::get('/', 'showDashboard')->middleware('logged');
-    Route::get('/edit-product/{product}', 'showProduct');
-    Route::put('/edit-product/{product}', 'edit');
-    Route::delete('/edit-product/{product}',  'delete');
-    Route::post('/products','create');
-    Route::get('/sales',  'showSales');
+    Route::middleware('logged')->group(function (){
+        Route::get('/', 'showDashboard');
+        Route::get('/edit-product/{product}', 'showProduct');
+        Route::put('/edit-product/{product}', 'edit');
+        Route::delete('/edit-product/{product}',  'delete');
+        Route::post('/products','create');
+        Route::get('/sales',  'showSales');
+
+    });
 });
 
 
@@ -50,11 +53,13 @@ Route::controller(ProductController::class)->group(function (){
 VENDAS: GET/POST/UPDATE/EDIT/DELETE
 */
 Route::controller(Sales::class)->group(function (){
+    Route::middleware('logged')->group(function (){
     Route::get('/edit-sale/{sale}', 'dataToEditSales');
     Route::put('/edit-sale/{sale}', 'editSale');
     Route::post('/sales', 'create');
     Route::get('/search',  'search');
     Route::get('/searchWithDate', 'searchWithDate');
+    });
 });
 
 
