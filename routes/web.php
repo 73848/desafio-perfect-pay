@@ -36,7 +36,7 @@ Route::get('/products', function () {
 return view('crud_products');});
 
 Route::controller(ProductController::class)->group(function (){
-    Route::get('/', 'showDashboard');
+    Route::get('/', 'showDashboard')->middleware('logged');
     Route::get('/edit-product/{product}', 'showProduct');
     Route::put('/edit-product/{product}', 'edit');
     Route::delete('/edit-product/{product}',  'delete');
