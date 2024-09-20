@@ -167,6 +167,10 @@
                     </tr>
                 @endforeach
             </table>
+            <form action="/deslogar" method="GET">
+                @csrf
+                <button type="submit" class='btn btn-danger'>Deslogar</button>
+            </form>
         </div>
     </div>
 @endsection

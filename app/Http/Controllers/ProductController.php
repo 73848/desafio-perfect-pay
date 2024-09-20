@@ -36,7 +36,8 @@ class ProductController extends Controller
       public function showDashboard(){
         $products = get_products_data();
         $clients = DB::table('client')->orderBy('name')->get();
-        $sales = get_sales_data()->forPage(1,10);
+        $controller = new Sales();
+        $sales = $controller->get_sales_data()->forPage(1,10);
         return view('dashboard', ['products'=> $products, 'sales' => $sales, 'clients' => $clients ]);
       }
 
@@ -65,4 +66,5 @@ class ProductController extends Controller
         $product->delete();
         return redirect('/');
       }
+      
 }

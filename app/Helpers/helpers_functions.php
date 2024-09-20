@@ -34,7 +34,20 @@ function get_especific_sales_by_client_product($search, $pagination = 5)
     return $result;
 }
 
-
+function get_sales_betwen_dates($initialDate, $finalDate)
+{
+    $sales = DB::table('client_products')
+        ->join('client', 'client_products.client_id', '=', 'client.id')
+        ->join('products', 'client_products.product_id', '=', 'products.id')
+        ->whereBetween('date', [$initialDate, $finalDate])
+        ->select(
+            'client_products.*',
+            'client.name as client_name',
+            'products.name as products_name',
+            'products.price as products_price'
+        )->get();
+    return $sales;
+}
 
 function get_products_data($id=false)
 {

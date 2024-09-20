@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Users;
-use Illuminate\Foundation\Auth\User;
+use Illuminate\Support\Facades\Session;
 
 class UsersController extends Controller
 {
@@ -24,6 +24,8 @@ class UsersController extends Controller
         $email = Users::where('email', $input['email'])->first();   
         if($email){
             if(verifyPassword($input['password'], $email->password)){
+                Session::put('name', $email->name);
+                Session::put('user_id', $email->id);
                 return redirect('/')->with(['message' => 'Seja bem vindo!', 'user'=> $email->name,  ]);
             }
             else{
@@ -32,6 +34,10 @@ class UsersController extends Controller
         }else {
             return redirect('/cadastro')->with('message', 'Usuario não encontrado. Por favor, cadastre-se.');;
         }
+    }
+    public function logOut(){
+        Session::flush();
+        return redirect('/login')->with('message', 'Usuario deslogado com sucesso!');
     }
     public function create(Request $request){
         $inputForm = $request->validate([

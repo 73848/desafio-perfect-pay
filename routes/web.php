@@ -18,6 +18,7 @@ Route::controller(UsersController::class)->group(function (){
     Route::get('/login',  'indexLogin');
     Route::post('/registerUser',  'create');
     Route::post('/loginUsers',  'login');
+    Route::get('/deslogar',  'logOut');
 });
 
 /*
