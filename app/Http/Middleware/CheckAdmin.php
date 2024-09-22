@@ -18,9 +18,9 @@ class CheckAdmin
     {
         $is_admin = $request->session()->get('role_id');
 
-        if(!$is_admin === 1){
-            return redirect()->back()->with(['message', ['Erro de autorização.']]);
+        if($is_admin == 1){
+            return $next($request);
         }
-        return $next($request);
+        return redirect()->back()->with(['error' =>'Erro de autorização.']);
     }
 }

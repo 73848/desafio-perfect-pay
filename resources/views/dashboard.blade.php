@@ -7,6 +7,12 @@
 
 </div>
 @endif
+@if (session()->has('error'))
+<div class="alert alert-danger">
+  {{session('error')}}
+
+</div>
+@endif
     <h1>Dashboard de vendas</h1>
     <div class='card mt-3'>
         <div class='card-body'>

@@ -33,8 +33,12 @@
                 <input type="password" class="form-control" name="password" placeholder="Password">
             </div>
             <div class="form-group">
-                <input type="hidden" class="form-control" name="role_id" value="1" placeholder="">
-            </div>
+                <label for="product">Função</label>
+                <select name="role_id"  class="form-control">
+                    <option client_id value = "1">Administrador</option>
+                    <option client_id value = "2">Vendedor</option>
+                </select>           
+             </div>
             <button type="submit" class="btn btn-primary">Cadastrar</button>
             <br>
         </form>

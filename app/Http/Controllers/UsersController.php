@@ -30,10 +30,10 @@ class UsersController extends Controller
                 return redirect('/')->with(['message' => 'Seja bem vindo!', 'user'=> $user->name,  ]);
             }
             else{
-                return redirect()->back()->with(['message'=> 'Senha incorreta.']); // retornar os dados do usuario logado
+                return redirect()->back()->with(['error'=> 'Senha incorreta.']); // retornar os dados do usuario logado
             }
         }else {
-            return redirect('/cadastro')->with('message', 'Usuario não encontrado. Por favor, cadastre-se.');;
+            return redirect('/login')->with(['error' =>'Usuario não encontrado. Por favor, peça para o admin cadastrá-lo.']);;
         }
     }
     public function logOut(){
