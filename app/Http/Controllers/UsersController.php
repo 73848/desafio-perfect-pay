@@ -21,12 +21,13 @@ class UsersController extends Controller
             'password'=> 'required|min:8',
         ]);
 
-        $email = Users::where('email', $input['email'])->first();   
-        if($email){
-            if(verifyPassword($input['password'], $email->password)){
-                Session::put('name', $email->name);
-                Session::put('user_id', $email->id);
-                return redirect('/')->with(['message' => 'Seja bem vindo!', 'user'=> $email->name,  ]);
+        $user = Users::where('email', $input['email'])->first();   
+        if($user){
+            if(verifyPassword($input['password'], $user->password)){
+                Session::put('name', $user->name);
+                Session::put('user_id', $user->id);
+                Session::put('role_id', $user->role_id);
+                return redirect('/')->with(['message' => 'Seja bem vindo!', 'user'=> $user->name,  ]);
             }
             else{
                 return redirect()->back()->with(['message'=> 'Senha incorreta.']); // retornar os dados do usuario logado

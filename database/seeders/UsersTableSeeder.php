@@ -16,5 +16,22 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         Users::factory(5)->create();
+        $password1 = crypted('atum1234');
+        $password2 = crypted('salmao12');
+        // usuario para teste
+        Users::factory()->create([ 
+         
+            'name' => 'Cristiano Messi',
+            'email' => 'cristianomessi@gmail.com',
+            'role_id' => 1,
+            'password' => $password1, // password
+        ]);
+        Users::factory()->create([ 
+         
+            'name' => 'Neymar Mbappe',
+            'email' => 'neymarmbappe@gmail.com',
+            'role_id' => 2,
+            'password' => $password2, // password
+        ]);
     }
 }

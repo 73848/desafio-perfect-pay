@@ -14,7 +14,7 @@
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span class='d-md-down-none'>   USUARIO: {{Session::get('name', ' ')}}</span>
+                    <span class='d-md-down-none'>    {{Session::get('name', ' ')}} </span>
                     <img class='rounded-pill' src='{{ url("/img/destaque-albert-einstein.jpg") }}' width='40' height='40' alt='Albert Einsten'>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right position-absolute">
