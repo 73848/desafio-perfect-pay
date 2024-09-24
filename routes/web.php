@@ -7,10 +7,6 @@ use App\Http\Controllers\Sales;
 use App\Http\Controllers\UsersController;
 
 /*
-    DASHBOARD
-*/
-
-/*
 USUARIOS: GET/POST/UPDATE/DELETE    
 */
 Route::controller(UsersController::class)->group(function (){
@@ -32,8 +28,6 @@ Route::post('/register', [ClientController::class, 'create']);
 PRODUTOS:  GET/POST/UPDATE/EDIT/DELETE
 */
 
-
-
 Route::get('/products', function () {
 return view('crud_products');});
 
@@ -50,9 +44,6 @@ Route::controller(ProductController::class)->group(function (){
 
     });
 });
-
-
-
 /*
 VENDAS: GET/POST/UPDATE/EDIT/DELETE
 */

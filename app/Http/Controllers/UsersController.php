@@ -56,7 +56,7 @@ class UsersController extends Controller
 
         Users::create($inputForm);
 
-        return redirect('/login')->with('message', "Vendedor cadastrado com sucesso!"); // redireciona para pagina de login
+        return redirect('/login')->with('message', "Usuário cadastrado com sucesso!"); // redireciona para pagina de login
 
     }
 
