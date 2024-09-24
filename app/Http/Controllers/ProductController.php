@@ -59,7 +59,7 @@ class ProductController extends Controller
        $product['price'] = $input['price'];
 
        $product->update($input);
-       return redirect('/')->with(['message' => 'Produto atualizado com sucesso!']);
+       return redirect('/')->with(['message' =>  'Produto atualizado com sucesso!']);
       }
       
       public function delete(Product $product){

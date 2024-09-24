@@ -52,4 +52,23 @@ class ProductUpdate extends TestCase
         $this->assertEquals(302, $response->getStatusCode());
 
     }
+
+    public function test_product_are_showed_corretly(){
+
+        $response = $this->get( '/edit-product/{product}');
+        $response->assertViewIs('edit_product');
+        $response->assertStatus(200);        
+    }
+    public function test_dashboard_are_showed_corretly(){
+        $response = $this->get('/');
+        $response->assertViewIs('dashboard');
+        $response->assertStatus(200);
+    }
+
+    public function test_crud_sales_are_showed_corretly(){
+        $response = $this->get('/sales');
+        $response->assertViewIs('crud_sales');
+        $response->assertStatus(200);
+    }
+
 }

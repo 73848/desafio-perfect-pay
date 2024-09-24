@@ -7,13 +7,9 @@
     </div>
 @endif
     <h1>Adicionar / Editar Venda</h1>
-    @if ($errors->any())
+    @if (session('errors'))
     <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
+        {{ session('errors') }}
     </div>
     @endif
     <div class='card'>
