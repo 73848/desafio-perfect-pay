@@ -9,8 +9,9 @@ use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Tests\TestCase;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Http\Request;
+use Illuminate\Support\Testing\Fakes\EventFake;
 
-# php artisan test --filter=SalesCreated
+# php artisan test --filter=UserCreated
 class UserCreated extends TestCase
 {
     use RefreshDatabase;
@@ -35,31 +36,53 @@ class UserCreated extends TestCase
         $this->assertDatabaseHas('users', [ 'role_id' => '1',
         'name' => 'Dorivalson Duarte',
         'email' => 'DorivalsonDuarte@gmail.com',
-        'password' => crypted('salmao')
-    ]);
-
-
-     
+    ]);     
+        $this->assertEquals(true, verifyPassword('salmao',crypted('salmao')));
     }
 
+    /* 
     public function test_user_are_updated_correctly()
     {
-        $userUpdateData = [
+        Event::Fake();
+        $user = Users::create([
             'role_id' => '1',
             'name' => 'Dorivalson Duarte',
             'email' => 'DuarteDorivalson@gmail.com',
             'password' => crypted('atum')
-        ];
-
-        $user = Users::where('name', 'Dorivalson Duarte')->first();
-
-        $user->update($userUpdateData);
-
-        $this->assertDatabaseHas('users', ['role_id' => $userUpdateData['role_id'], 'name' => $userUpdateData['name'],
-         'email'=> $userUpdateData['email'], 'password' =>$userUpdateData['password']]);
-
-         $this->assertEquals(true, verifyPassword('atum', $user->password));
-     
+        ]);
+        $request = Request::create('/registerUser','POST', [
+            'role_id' => '1',
+            'name' => 'Dorivalson Duarte',
+            'email' => 'DorivalsonDuarte@gmail.com',
+            'password' => crypted('salmao')
+            ] );
+            
+            $user = new UsersController();
+            
+            
+            criar route     
+            $this->assertDatabaseHas('users', ['role_id' => $userUpdateData['role_id'], 'name' => $userUpdateData['name'],
+            'email'=> $userUpdateData['email'], 'password' =>$userUpdateData['password']]);
+            
+            $this->assertEquals(true, verifyPassword('atum', $user->password));
+        }
+        */
+        public function test_user_are_logged_correctly()
+        { 
+        $request = Request::create('/registerUser','POST', 
+        ['role_id' => '1',
+        'name' => 'Dorivalson Duarte',
+        'email' => 'DorivalsonDuarte@gmail.com',
+        'password' => crypted('salmao')
+        ] );
+        
+        
+        $user = new UsersController();
+        $response = $user->login($request);
+        
+        $this->assertEquals(302, $response->getStatusCode());
+        
     }
+
    
 }
