@@ -30,23 +30,19 @@ class ProductController extends Controller
       public function showSales(){
         $products = get_products_data();
         $clients = DB::table('client')->paginate(10);
-        $jsonProducts = json_encode($products);
-        $jsonClients = json_encode($clients);
-        return view('crud_sales', compact('jsonProducts', 'jsonClients'));
+        return view('crud_sales', ['products'=> $products,'clients' => $clients]);
 }     
 
       public function showDashboard(){
-        $products =json_encode(get_products_data());
+        $products = get_products_data();
         $clients = json_encode(DB::table('client')->orderBy('name')->get());
         $controller = new Sales();
         $sales = json_encode($controller->get_sales_data()->forPage(1,10));
-
-        return view('dashboard', compact('products', 'sales', 'clients'));
+        return view('dashboard', compact('products','sales', 'clients' ));
       }
 
      public function showProduct(Product $product){
-      $jsonProducts = json_encode($product);
-      return view('edit_product', compact('jsonProducts'));
+      return view('edit_product', ['product'=> $product]);
      }
 
       public function edit(Product $product, Request $request){

@@ -30,7 +30,7 @@ function get_especific_sales_by_client_product($search, $pagination = 5)
             'client.name as client_name',
             'products.name as products_name',
             'products.price as products_price'
-        )->paginate($pagination);
+        )->get();
     return $result;
 }
 
@@ -56,7 +56,7 @@ function get_products_data($id=false)
     }else{
         $products = DB::table('products')->orderBy('name')->paginate(10);
     }
-    return $products;
+    return json_encode($products);
 }
 function validandoDesconto($productPrice, $discount){
     if($discount >= $productPrice ){

@@ -88,7 +88,6 @@ class Sales extends Controller
             'price_sales' => $price_sales,
             'status' => $status]);
 
-
         return redirect('/')->with(['message','Edicao feita com sucesso!']);
     }
 
@@ -98,9 +97,9 @@ class Sales extends Controller
         $inputForm = $request->validate(['search' => 'required']);
         $search = $inputForm['search'];
         $products = get_products_data();
-        $sales = get_especific_sales_by_client_product($search);
+        $sales = json_encode(get_especific_sales_by_client_product($search));
 
-        return view('dashboard', ['sales' => $sales, 'products' => $products])->with(['message','Resultados encontrados']);
+        return view('dashboard', compact('products','sales', ))->with(['message','Resultados encontrados']);
     }
     public function searchWithDate(Request $request)
     {
@@ -117,7 +116,7 @@ class Sales extends Controller
         return view('dashboard', ['sales' => $sales, 'products' => $products]);
     }
 
-   public function get_sales_data($id = false)
+   public function get_sales_data($id = false, $paginate = 10)
 {
     if ($id) {
         $sales =  DB::table('client_products')
