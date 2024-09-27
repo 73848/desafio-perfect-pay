@@ -78,6 +78,7 @@ class UserCreated extends TestCase
         'password' => crypted('salmao')
         ] );
         
+
         
         $user = new UsersController();
         $response = $user->login($request);
@@ -95,11 +96,19 @@ class UserCreated extends TestCase
         'email' => 'DorivalsonDuarte@gmail.com',
         'password' => crypted('atum')
         ]);
-        $response->assertRedirect('login');
-
-
-        
+        $response->assertRedirect('/login');        
     }
 
+    public function test_user_are_logged_wrongly_email()
+    { 
+        
+        $response = $this->from('login')->post('loginUsers', [
+        'role_id' => '1',
+        'name' => 'Dorivalson Duarte',
+        'email' => 'DuarteDorivalson@gmail.com',
+        'password' => crypted('salmao')
+        ]);
+        $response->assertRedirect('/login');        
+    }
    
 }

@@ -42,7 +42,8 @@ class ProductController extends Controller
       }
 
      public function showProduct(Product $product){
-      return view('edit_product', ['product'=> $product]);
+      $product = json_encode($product);
+      return view('edit_product', compact('product'));
      }
 
       public function edit(Product $product, Request $request){

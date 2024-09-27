@@ -8,6 +8,7 @@ use App\Models\Product;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
+use Illuminate\Support\Facades\DB;
 use Tests\TestCase;
 
 # php artisan test --filter=ProductUpdate
@@ -54,9 +55,13 @@ class ProductUpdate extends TestCase
     }
 
     public function test_product_are_showed_corretly(){
+        $productToUpdate = Product::create([
+            'name'=>'Iphone 7',
+            'description'=>'O melhor móvel da atualizade',
+            'price' => '800',]);
+        $product = Product::where('name','Iphone 7')->first();
+        $response = $this->getJson('/edit-product/3');
 
-        $response = $this->get( '/edit-product/{product}');
-        $response->assertViewIs('edit_product');
         $response->assertStatus(200);        
     }
     public function test_dashboard_are_showed_corretly(){

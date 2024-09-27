@@ -9,8 +9,9 @@
 @endif
 @php
     
-$product = json_decode($jsonProducts);
+$product = json_decode($product);
 @endphp
+@dd($product)
     <div class='card'>
         <div class='card-body'>
             <form action="/edit-product/{{$product->id}}" method="POST">
