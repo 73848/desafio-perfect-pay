@@ -7,6 +7,10 @@
     {{session('message')}}
     </div>
 @endif
+@php
+    
+$product = json_decode($jsonProducts);
+@endphp
     <div class='card'>
         <div class='card-body'>
             <form action="/edit-product/{{$product->id}}" method="POST">

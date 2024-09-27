@@ -52,10 +52,10 @@ class Sales extends Controller
     }
     public function dataToEditSales($id)
     {
-        $products = DB::table('products')->paginate(10);
+        $products = json_encode(DB::table('products')->paginate(10));
 
-        $sale = $this->get_sales_data($id);
-        return view('edit_sales', ['sale' => $sale, 'products' => $products]);
+        $sale = json_encode($this->get_sales_data($id));
+        return view('edit_sales',compact( 'sale', 'products')); // parei aqui
     }
     public function editSale(Request $request, $id)
     {
@@ -71,7 +71,6 @@ class Sales extends Controller
         );
 
         $product_id = strip_tags($inputForm['product_id']);
-        $client_id = strip_tags($inputForm['client_id']);
         $date = strip_tags($inputForm['date']);
         $quantity = strip_tags($inputForm['quantity']);
         $discount = strip_tags($inputForm['discount']);
@@ -92,6 +91,8 @@ class Sales extends Controller
 
         return redirect('/')->with(['message','Edicao feita com sucesso!']);
     }
+
+    //LEMBRAR DE CRIAR JSON
     public function search(Request $request)
     {
         $inputForm = $request->validate(['search' => 'required']);

@@ -67,8 +67,10 @@ class UserCreated extends TestCase
             $this->assertEquals(true, verifyPassword('atum', $user->password));
         }
         */
+        
         public function test_user_are_logged_correctly()
         { 
+        Event::fake();
         $request = Request::create('/registerUser','POST', 
         ['role_id' => '1',
         'name' => 'Dorivalson Duarte',
@@ -81,6 +83,21 @@ class UserCreated extends TestCase
         $response = $user->login($request);
         
         $this->assertEquals(302, $response->getStatusCode());
+        
+    }  
+
+    public function test_user_are_logged_wrongly_password()
+    { 
+        
+        $response = $this->from('login')->post('loginUsers', [
+        'role_id' => '1',
+        'name' => 'Dorivalson Duarte',
+        'email' => 'DorivalsonDuarte@gmail.com',
+        'password' => crypted('atum')
+        ]);
+        $response->assertRedirect('login');
+
+
         
     }
 

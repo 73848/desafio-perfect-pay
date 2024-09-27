@@ -13,7 +13,13 @@
 
 </div>
 @endif
-    <h1>Dashboard de vendas</h1>
+@php
+    $clients = json_decode($clients);
+    $products = json_decode($products)->data;
+    $sales = json_decode($sales);
+    
+@endphp
+<h1>Dashboard de vendas</h1>
     <div class='card mt-3'>
         <div class='card-body'>
             <h5 class="card-title mb-5">Tabela de vendas

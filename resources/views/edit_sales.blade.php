@@ -11,6 +11,11 @@
         </ul>
     </div>
     @endif
+    @php
+            $sale = json_decode($sale);
+            $products = json_decode($products)->data;
+
+    @endphp
     <div class='card'>
         <div class='card-body'>
             <form action="/edit-sale/{{$sale->id}}" method="POST">

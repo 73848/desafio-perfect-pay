@@ -12,6 +12,11 @@
         {{ session('errors') }}
     </div>
     @endif
+    @php
+    
+        $clients = json_decode($jsonClients)->data;
+        $products = json_decode($jsonProducts)->data;
+    @endphp
     <div class='card'>
         <div class='card-body'>
             <form action="/register" method="POST">
