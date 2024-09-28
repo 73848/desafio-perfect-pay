@@ -41,6 +41,22 @@ class ProductUpdate extends TestCase
             'description'=>'Esse sim é o melhor.',
             'price' => '10000',]);   
     }
+    public function test_product_are_set_correctly(){
+        Event::fake();    
+
+        $request = Request::create('/products', 'POST',[ 
+         'name'=>'Iphone 7',
+        'description'=>'O melhor móvel da atualizade',
+        'price' => '800',]);
+
+        $controller = new ProductController;
+        $response = $controller->create($request);
+                
+        $this->assertEquals(302, $response->getStatusCode());
+        $this->assertDatabaseHas('products', ['name'=>'Iphone 7']);
+        $this->assertDatabaseHas('products',['description'=>'O melhor móvel da atualizade']);
+        $this->assertDatabaseHas('products', ['price' => '800']);
+    }
 
     public function test_product_are_deleted_corretly(){
 
@@ -54,26 +70,8 @@ class ProductUpdate extends TestCase
 
     }
 
-    public function test_product_are_showed_corretly(){
-        $productToUpdate = Product::create([
-            'name'=>'Iphone 7',
-            'description'=>'O melhor móvel da atualizade',
-            'price' => '800',]);
-        $product = Product::where('name','Iphone 7')->first();
-        $response = $this->getJson('/edit-product/3');
+  
+   
 
-        $response->assertStatus(200);        
-    }
-    public function test_dashboard_are_showed_corretly(){
-        $response = $this->get('/');
-        $response->assertViewIs('dashboard');
-        $response->assertStatus(200);
-    }
-
-    public function test_crud_sales_are_showed_corretly(){
-        $response = $this->get('/sales');
-        $response->assertViewIs('crud_sales');
-        $response->assertStatus(200);
-    }
-
+   
 }

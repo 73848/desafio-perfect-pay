@@ -14,8 +14,8 @@
     @endif
     @php
     
-        $clients = json_decode($jsonClients)->data;
-        $products = json_decode($jsonProducts)->data;
+        $clients = json_decode($clients)->data;
+        $products = json_decode($products)->data;
     @endphp
     <div class='card'>
         <div class='card-body'>

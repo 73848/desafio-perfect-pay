@@ -29,8 +29,8 @@ class ProductController extends Controller
 
       public function showSales(){
         $products = get_products_data();
-        $clients = DB::table('client')->paginate(10);
-        return view('crud_sales', ['products'=> $products,'clients' => $clients]);
+        $clients = json_encode(DB::table('client')->paginate(10));
+        return view('crud_sales', compact('products', 'clients' ));
 }     
 
       public function showDashboard(){
