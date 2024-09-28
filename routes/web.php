@@ -34,7 +34,7 @@ return view('crud_products');});
 Route::controller(ProductController::class)->group(function (){
     Route::middleware('logged')->group(function (){
         Route::middleware('isAdmin')->group(function (){
-            Route::get('/edit-product/{product}', 'showProduct');
+            Route::get('/edit-product/{product}', 'showProduct')->name('product.show');
             Route::put('/edit-product/{product}', 'edit');
             Route::delete('/edit-product/{product}',  'delete');
             Route::post('/products','create');
