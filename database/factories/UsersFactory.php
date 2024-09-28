@@ -21,7 +21,7 @@ class UsersFactory extends Factory
 
     public function definition()
     {
-        $role = Roles::all();
+        $role = [1,2];
         $password = crypted(fake()->word());
         return [
             'name' => fake()->name(),
