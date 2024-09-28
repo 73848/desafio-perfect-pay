@@ -29,7 +29,7 @@ PRODUTOS:  GET/POST/UPDATE/EDIT/DELETE
 */
 
 Route::get('/products', function () {
-return view('crud_products');});
+return view('crud_products');})->name('product.create')->middleware(['logged','isAdmin']);
 
 Route::controller(ProductController::class)->group(function (){
     Route::middleware('logged')->group(function (){

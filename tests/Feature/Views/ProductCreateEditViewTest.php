@@ -37,7 +37,7 @@ class ProductViewTest extends TestCase
 
         $response->assertStatus(302);   
     }
-    public function test_edit_sales_are_showed_only_for_admins_corretly(){
+    public function test_edit_products_are_showed_only_for_admins_corretly(){
 
         $admin = Users::factory()->create();
         $this->actingAs($admin)->withSession(['role_id'=>'1', 'user_id'=> '7']);
@@ -46,16 +46,37 @@ class ProductViewTest extends TestCase
         $response = $this->get(route('product.show',['product'=>$product->id]));
         $response->assertStatus(200);
 
-    }    public function test_edit_sales_are_not_showed_for_not_admins_corretly(){
+    }    public function test_edit_products_are_not_showed_for_not_admins_corretly(){
 
         $admin = Users::factory()->create();
-        $this->actingAs($admin)->withSession([ 'user_id'=> '7']);
+        $this->actingAs($admin)->withSession(['role_id'=>'2', 'user_id'=> '7']);
         $product = Product::factory(1)->create()->first();
      
         $response = $this->get(route('product.show',['product'=>$product->id]));
         $response->assertStatus(302);
 
     }
+    public function test_crud_products_are_showed_only_for_admins_corretly(){
+
+        $admin = Users::factory()->create();
+        $this->actingAs($admin)->withSession([ 'role_id'=>'1', 'user_id'=> '7']);
+        $product = Product::factory(1)->create()->first();
+     
+        $response = $this->get(route('product.create'));
+        $response->assertStatus(200);
+
+    }
+    public function test_crud_products_are_not_showed_for_not_admins_corretly(){
+
+        $admin = Users::factory()->create();
+        $this->actingAs($admin)->withSession([ 'role_id'=>'2', 'user_id'=> '7']);
+        $product = Product::factory(1)->create()->first();
+     
+        $response = $this->get(route('product.create'));
+        $response->assertStatus(302);
+
+    }
+
 
 
     // teste para
