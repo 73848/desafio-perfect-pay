@@ -148,13 +148,15 @@
                     </th>
                     <th scope="col">
                         Valor
-                    </th>
+                    </th>@if (Session::get('role_id') === 1)
+                        
                     <th scope="col">
                         Ações
                     </th>
                     <th scope="col">
-
+                        
                     </th>
+                    @endif
                 </tr>
 
                 @foreach ($products as $product)
@@ -165,6 +167,8 @@
                         <td>
                             R$ {{ $product->price }}
                         </td>
+                        @if (Session::get('role_id') === 1)
+                            
                         <td>
                             <a href='/edit-product/{{ $product->id }}' class='btn btn-primary'>Editar</a>
                         </td>
@@ -175,6 +179,7 @@
                                 <button type="submit" class='btn btn-danger'>Excluir</button>
                             </form>
                         </td>
+                        @endif
                     </tr>
                 @endforeach
             </table>
