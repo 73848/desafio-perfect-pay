@@ -38,8 +38,7 @@ class Sales extends Controller
         $dateFormat = aplicacao_banco_de_dados_($date);
 
         $client = Client::find($inputForm['client_id']);
-        $client->products()->attach(
-            $inputForm['client_id'],
+        $product->clients()->attach($client->id,
             [
                 'quantity' => $quantity,
                 'date' => $dateFormat,

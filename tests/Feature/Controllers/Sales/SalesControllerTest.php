@@ -19,14 +19,11 @@ class SalesController extends TestCase
     public function test_sales_are_created_only_for_logged_users_correctly()
     {
         Event::fake();
-
         $product = Product::factory(1)->create()->first();
         $client = Client::factory(1)->create()->first();
-        
         $admin = Users::factory(1)->create()->first();
         $this->actingAs($admin)->withSession(['role_id'=>'1', 'user_id'=> '7']);
                 
-
         $request = Request::create('/sales','POST', [                
         'client_id' =>   $client->id,
         'product_id' =>   $product->id,
@@ -36,9 +33,9 @@ class SalesController extends TestCase
         'status' =>   'Aprovado',]);
         $sale = new Sales();
         $response = $sale->create($request);
-
         $this->get('/sales')->assertViewIs('crud_sales');
-        $this->assertEquals(302, $response->getStatusCode()); // quando criado, ha o redirecionamento da venda
+        $this->assertEquals(302, $response->getStatusCode());  // quando criado, ha o redirecionamento da venda
 
-        }
+    }
+
 }

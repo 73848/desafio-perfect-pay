@@ -2,15 +2,7 @@
 
 @section('content')
     <h1>Adicionar / Editar carro</h1>
-    @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-    @endif
+  
     @php
             $sale = json_decode($sale);
             $products = json_decode($products)->data;
