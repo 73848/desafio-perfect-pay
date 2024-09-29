@@ -51,7 +51,7 @@ Route::controller(Sales::class)->group(function (){
     Route::middleware('logged')->group(function (){
         Route::middleware('isAdmin')->group(function (){
             Route::get('/edit-sale/{sale}', 'dataToEditSales')->name('sales.show');
-            Route::put('/edit-sale/{sale}', 'editSale');
+            Route::put('/edit-sale/{sale}', 'editSale')->name('sales.edit');
         });
     Route::post('/sales', 'create')->name('create.sale');
     Route::get('/search',  'search');

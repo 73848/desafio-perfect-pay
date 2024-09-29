@@ -19,12 +19,10 @@ class SalesViewTest extends TestCase
 {
 
     use RefreshDatabase;
-    use WithoutMiddleware;
 
     // teste para ver se os produtos estao sendo enviados para a view edit_sales
     public function test_create_sales_are_showed_only_for_loggeds_corretly()
     {
-
         $user = Users::factory(1)->create()->first();
         $this->actingAs($user)->withSession(['user_id' => '1']);
         $response = $this->get('/sales');
@@ -51,8 +49,18 @@ class SalesViewTest extends TestCase
         $sale = new Sales();
         $sale->create($request); // o id dessa venda sera 1
         $saleId = $sale->get_sales_data(1)->id;
-        $response = $this->get(route('sales.show', ['sale' => $saleId]));
+        $response = $this->get(route('sales.edit', ['sale' => $saleId]));
         $this->assertEquals(200, $response->getStatusCode());
+    }
+    public function test_edit_sales_are_not_showed_for_not_admins_corretly()
+    {
+        $user = Users::factory(1)->create()->first();
+        $this->actingAs($user)->withSession(['user_id' => '1', 'role_id' => '2']);
+      
+        $sale = new Sales();
+        $saleId = $sale->get_sales_data(1)->id;
+        $response = $this->get(route('sales.edit', ['sale' => $saleId]));
+        $response->assertStatus(302);
     }
 
 
