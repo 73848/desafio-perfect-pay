@@ -37,8 +37,8 @@ class SalesViewTest extends TestCase
         // criando uma venda
         $client = Client::factory(1)->create()->first();
         $product = Product::factory(1)->create()->first();
-        $user = Users::factory(1)->create()->first();
-        $this->actingAs($user)->withSession(['user_id' => '1', 'role_id' => '1']);
+        $admin = Users::factory(1)->create()->first();
+        $this->actingAs($admin)->withSession(['user_id' => '1', 'role_id' => '1']);
         //metodo ja testado
         $request = Request::create('/sales', 'POST', [
             'client_id' =>   $client->id,
@@ -50,7 +50,8 @@ class SalesViewTest extends TestCase
         ]);
         $sale = new Sales();
         $sale->create($request); // o id dessa venda sera 1
-        $response = $this->get(route('sales.show', ['sale' => '1']));
+        $saleId = $sale->get_sales_data(1)->id;
+        $response = $this->get(route('sales.show', ['sale' => $saleId]));
         $this->assertEquals(200, $response->getStatusCode());
     }
 
