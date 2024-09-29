@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use App\Http\Controllers\ProductController;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Users;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
@@ -23,9 +24,12 @@ class ProductUpdate extends TestCase
         'description'=>'O melhor móvel da atualizade',
         'price' => '800',]);
        
-        Event::fake();    
-
-        $request = Request::create('/edit-product/{product}', 'PUT',[ 
+        Event::fake();
+//parei aqui
+        $admin = Users::factory()->create();
+        $this->actingAs($admin)->withSession(['role_id'=>'1', 'user_id'=> '7']);
+     
+        $request = Request::create(route('product.edit',['product'=> 1]), 'PUT',[ 
             'name'=>'Iphone 15',
             'description'=>'Esse sim é o melhor.',
             'price' => '10000',]);
@@ -34,7 +38,7 @@ class ProductUpdate extends TestCase
 
         $response = $product->edit($productToUpdate, $request);
         
-        $this->assertEquals(302, $response->getStatusCode());
+        $this->assertEquals(200, $response->getStatusCode());
 
         $this->assertDatabaseHas('products',[ 
             'name'=>'Iphone 15',
@@ -69,7 +73,7 @@ class ProductUpdate extends TestCase
         $this->assertEquals(302, $response->getStatusCode());
 
     }
-
+   
   
    
 

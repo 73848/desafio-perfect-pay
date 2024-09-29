@@ -35,7 +35,7 @@ Route::controller(ProductController::class)->group(function (){
     Route::middleware('logged')->group(function (){
         Route::middleware('isAdmin')->group(function (){
             Route::get('/edit-product/{product}', 'showProduct')->name('product.show');
-            Route::put('/edit-product/{product}', 'edit');
+            Route::put('/edit-product/{product}', 'edit')->name('product.edit');
             Route::delete('/edit-product/{product}',  'delete');
             Route::post('/products','create');
         });
@@ -50,10 +50,10 @@ VENDAS: GET/POST/UPDATE/EDIT/DELETE
 Route::controller(Sales::class)->group(function (){
     Route::middleware('logged')->group(function (){
         Route::middleware('isAdmin')->group(function (){
-            Route::get('/edit-sale/{sale}', 'dataToEditSales');
+            Route::get('/edit-sale/{sale}', 'dataToEditSales')->name('sales.show');
             Route::put('/edit-sale/{sale}', 'editSale');
         });
-    Route::post('/sales', 'create');
+    Route::post('/sales', 'create')->name('create.sale');
     Route::get('/search',  'search');
     Route::get('/searchWithDate', 'searchWithDate');
     });
