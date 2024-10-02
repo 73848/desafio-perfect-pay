@@ -25,7 +25,7 @@ class ProductUpdate extends TestCase
         'price' => '800',]);
        
         Event::fake();
-//parei aqui
+
         $admin = Users::factory()->create();
         $this->actingAs($admin)->withSession(['role_id'=>'1', 'user_id'=> '7']);
      
@@ -37,8 +37,8 @@ class ProductUpdate extends TestCase
         $product = new ProductController();
 
         $response = $product->edit($productToUpdate, $request);
-        
-        $this->assertEquals(200, $response->getStatusCode());
+        // aqui a aplicacao redireciona logo apos a chamad ado metodo
+        $this->assertEquals(302, $response->getStatusCode());
 
         $this->assertDatabaseHas('products',[ 
             'name'=>'Iphone 15',
