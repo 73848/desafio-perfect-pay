@@ -164,4 +164,11 @@ function banco_de_dados_aplicacao($date_from_db)
     $date_formated = \DateTime::createFromFormat($format, $date_from_db)->format('d/m/Y');
     return $date_formated;
 }
+function validandoDesconto($productPrice, $discount){
+    if($discount >= $productPrice ){
+         $discount = $productPrice*0.1;
+         return $discount;
+    }
+    return $discount;
+}
 }

@@ -29,4 +29,22 @@ class SalesTest extends TestCase
         $result = $controllerTest->banco_de_dados_aplicacao($dateFromApp);
         $this->assertEquals('03/10/2024', $result);
     }
+    public function test_validandoDesconto_is_running_corretly()
+    {
+        $controllerTest = new Sales();
+        $productPrice = 200;
+        $productDiscount = 50;
+
+        $result = $controllerTest->validandoDesconto( $productPrice, $productDiscount);
+        $this->assertEquals('50', $result);
+    }
+    public function test_validandoDesconto_is_running_corretly_second_case()
+    {
+        $controllerTest = new Sales();
+        $productPrice = 200;
+        $productDiscount = 250;
+
+        $result = $controllerTest->validandoDesconto( $productPrice, $productDiscount);
+        $this->assertEquals('20', $result);
+    }
 }
