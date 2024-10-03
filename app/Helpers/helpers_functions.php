@@ -61,6 +61,7 @@ function get_products_data($id=false)
 function validandoDesconto($productPrice, $discount){
     if($discount >= $productPrice ){
          $discount = $productPrice*0.1;
+         return $discount;
     }
     return $discount;
 };

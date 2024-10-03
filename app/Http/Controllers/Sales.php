@@ -30,7 +30,7 @@ class Sales extends Controller
         $discount = strip_tags($inputForm['discount']);
         $status = strip_tags($inputForm['status']);
         $product = Product::find($inputForm['product_id']);
-        $discount = validandoDesconto($discount, $product->price);
+        $discount = validandoDesconto( $product->price,$discount);
         $price_sales = salesPrice($quantity, $discount, $product->price);
 
         // manipulando o formato da data antes de inserir no db para mais dúvidas, verifique a doc do PHP sobre 
@@ -78,7 +78,7 @@ class Sales extends Controller
         $dateFormat = aplicacao_banco_de_dados_($date);
         
         $product = Product::find($product_id);
-        $discount = validandoDesconto($discount, $product->price);
+        $discount = validandoDesconto( $product->price, $discount);
         $price_sales = salesPrice($quantity, $discount, $product->price);
         DB::table('client_products')->where('id', $id)->update(['product_id' => $product_id,
             'date' => $dateFormat,
@@ -151,5 +151,11 @@ function get_sales_betwen_dates($initialDate, $finalDate)
             'products.price as products_price'
         )->get();
     return $sales;
+}
+function aplicacao_banco_de_dados_($date_from_app)
+{
+    $format = 'd/m/Y';
+    $dateFormat = \DateTime::createFromFormat($format, $date_from_app)->format('Y-m-d');
+    return $dateFormat;
 }
 }
