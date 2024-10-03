@@ -47,4 +47,14 @@ class SalesTest extends TestCase
         $result = $controllerTest->validandoDesconto( $productPrice, $productDiscount);
         $this->assertEquals('20', $result);
     }
+    public function test_salesPrice_is_running_corretly()
+    {
+        $controllerTest = new Sales();
+        $quantity = 4;
+        $productPrice = 200;
+        $productDiscount = 250;
+
+        $result = $controllerTest->salesPrice($quantity,$productDiscount, $productPrice);
+        $this->assertEquals(550, $result);
+    }
 }
