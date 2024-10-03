@@ -17,5 +17,6 @@ class ProductsTableSeeder extends Seeder
     {
         Product::factory(15)->create();
         
+        
     }
 }

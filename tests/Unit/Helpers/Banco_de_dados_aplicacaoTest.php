@@ -10,7 +10,7 @@ use Tests\TestCase;
 # php artisan test --filter=HelpersDBAplication
 class HelpersDBAplication extends TestCase
 {
-    public function is_test_aplicacao_banco_de_dados__is_working_corretly(){
+  /*   public function is_test_aplicacao_banco_de_dados__is_working_corretly(){
         $date_from_db = '18/10/1972';
 
         $date_formated = aplicacao_banco_de_dados_($date_from_db);
@@ -26,7 +26,7 @@ class HelpersDBAplication extends TestCase
 
         $this->assertEquals('18/10/1972', $date_formated);
         
-    }
+    } */
 
    
     

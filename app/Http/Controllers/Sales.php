@@ -136,8 +136,6 @@ class Sales extends Controller
             ->select('client_products.*', 'client.name as client_name', 'products.name as products_name', 'products.price as products_price')
             ->get();
     }
-
-    
     return $sales;
 }
 function get_sales_betwen_dates($initialDate, $finalDate)

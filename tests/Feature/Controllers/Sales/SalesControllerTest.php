@@ -15,6 +15,18 @@ use Illuminate\Support\Facades\Event;
 class SalesController extends TestCase
 {
     use RefreshDatabase;
+  /*   public function test_sales_are_searched_corretly(){
+        Event::fake();
+        $client = Client::factory(1)->create()->first();
+        $product = Product::factory(1)->create()->first();
+        $admin = Users::factory(1)->create()->first();
+        $this->actingAs($admin)->withSession(['user_id' => '1', 'role_id' => '1']);
+        
+
+        $sale = new Sales();
+        $request = Request::create('search', 'GET', [])
+    } */
+
     public function test_sales_are_created_correctly()
     {
         Event::fake();

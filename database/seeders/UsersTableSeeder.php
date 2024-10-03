@@ -20,7 +20,6 @@ class UsersTableSeeder extends Seeder
         $password2 = crypted('salmao12');
         // usuario para teste
         Users::factory()->create([ 
-         
             'name' => 'Cristiano Messi',
             'email' => 'cristianomessi@gmail.com',
             'role_id' => 1,

@@ -20,7 +20,6 @@ class ProductFactory extends Factory
     public function definition()
     {
         return [
-            'id' => fake()->unique()->numerify(),
             'name' => fake()->unique()->randomElement([
                 'iPhone 14', 
                 'Samsung Galaxy S23', 
