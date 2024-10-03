@@ -65,12 +65,14 @@ class ProductUpdate extends TestCase
     public function test_product_are_deleted_corretly()
     {
         $product = new ProductController();
-        $productDeleted = Product::create([
-            'name' => 'Iphone 15',
-            'description' => 'Esse sim é o melhor.',
+        $productDeletedArray = [
+            'name' => 'Iphone 14',
+            'description' => 'Esse sim é o pior.',
             'price' => '10000',
-        ]);
+        ];
+        $productDeleted = Product::create($productDeletedArray);
         $response = $product->delete($productDeleted);
+        $this->assertDatabaseMissing('products',$productDeletedArray);
         $this->assertEquals(302, $response->getStatusCode());
     }
 }
