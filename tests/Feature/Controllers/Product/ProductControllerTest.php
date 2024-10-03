@@ -25,7 +25,7 @@ class ProductUpdate extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-        $this->arrayToCreateProducts = ['name' => 'Iphone 7','description' => 'O melhor móvel da atualizade',
+        $this->arrayToCreateProducts = ['name' => 'Iphone 7','description' => 'O melhor móvel da atualidade',
         'price' => '800',];
         $this->productTest = Product::factory()->create($this->arrayToCreateProducts);
         $this->productForUpdateTest = ['name' => 'Iphone 15','description' => 'Esse sim é o melhor.',

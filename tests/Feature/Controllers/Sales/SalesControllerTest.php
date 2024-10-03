@@ -26,23 +26,31 @@ class SalesController extends TestCase
         $sale = new Sales();
         $request = Request::create('search', 'GET', [])
     } */
+   protected $client;
+   protected $product;
+   protected $saleArray;
+
+   public function setUp() :void{
+    parent::setUp();
+    $client = Client::factory(1)->create()->first();
+    $product = Product::factory(1)->create()->first();
+    $this->saleArray =  [
+        'client_id' =>   $client->id,
+        'product_id' =>   $product->id,
+        'date' =>   '29/09/2024',
+        'quantity' =>   '3',
+        'discount' =>   '20',
+        'status' =>   'Aprovado',
+    ];
+   }
 
     public function test_sales_are_created_correctly()
     {
         Event::fake();
-        $client = Client::factory(1)->create()->first();
-        $product = Product::factory(1)->create()->first();
         $admin = Users::factory(1)->create()->first();
         $this->actingAs($admin)->withSession(['user_id' => '1', 'role_id' => '1']);
         //metodo ja testado
-        $request = Request::create('/sales', 'POST', [
-            'client_id' =>   $client->id,
-            'product_id' =>   $product->id,
-            'date' =>   '29/09/2024',
-            'quantity' =>   '3',
-            'discount' =>   '20',
-            'status' =>   'Aprovado',
-        ]);
+        $request = Request::create('/sales', 'POST',$this->saleArray);
         $sale = new Sales();
         $sale->create($request); // o id dessa venda sera 1
         $response = $sale->create($request);

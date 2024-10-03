@@ -20,7 +20,6 @@ class ClientFactory extends Factory
     public function definition()
     {
         return [
-            'id' => fake()->unique()->numerify(),
             'name' => fake()->name(),
             'email' => fake()->email(),
             'cpf' => fake()->unique()->numerify('###########'),
