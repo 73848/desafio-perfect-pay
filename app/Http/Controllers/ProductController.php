@@ -68,4 +68,14 @@ class ProductController extends Controller
         return redirect('/');
       }
       
+function get_products_data($id=false)
+{
+    if($id){
+        $products = DB::table('products')->where('id', $id)->get();
+    }else{
+        $products = DB::table('products')->orderBy('name')->get();
+    }
+    return json_encode($products);
+}
+      
 }

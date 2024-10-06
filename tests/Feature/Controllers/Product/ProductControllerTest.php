@@ -33,7 +33,7 @@ class ProductUpdate extends TestCase
         // arrays para as requests    
         $this->productTestArray = Product::query()->where('id','1')->get()->toArray()[0];
     }
-
+   
     public function test_product_are_update_correctly()
     {
         Event::fake();
@@ -74,5 +74,16 @@ class ProductUpdate extends TestCase
         $response = $product->delete($productDeleted);
         $this->assertDatabaseMissing('products',$productDeletedArray);
         $this->assertEquals(302, $response->getStatusCode());
+    }
+
+    public function test_get_all_products_data_return_json_corretyl(){
+        Event::fake();
+        $admin = Users::factory()->create();
+        $this->actingAs($admin)->withSession(['role_id' => '1', 'user_id' => '7']);
+       
+        $product_controler = new ProductController();
+        $response = $product_controler->get_products_data();
+        $this->assertJson($response);
+        
     }
 }
