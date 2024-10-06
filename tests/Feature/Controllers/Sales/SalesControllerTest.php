@@ -33,7 +33,7 @@ class SalesController extends TestCase
 
    public function setUp() :void{
     parent::setUp();
-    $client = Client::factory(2)->create()->first();
+    $client = Client::factory(3)->create()->first();
     $product = Product::factory(2)->create()->first();
     $this->saleArray =  [
         'client_id' =>   $client->id,
@@ -45,7 +45,7 @@ class SalesController extends TestCase
     ];
     $this->newSaleArray =  $this->saleArray;
     $this->newSaleArray['product_id'] = Product::query()->where('id', 2)->get()->toArray()[0]['id']; // quero apenas o id
-    $this->newSaleArray['client_id'] = Client::query()->where('id', 1)->get()->toArray()[0]['id']; // quero apenas o id
+    $this->newSaleArray['client_id'] = 2; // quero apenas o id
    }
 
     public function test_sales_are_created_correctly()
@@ -57,7 +57,6 @@ class SalesController extends TestCase
         $request = Request::create('/sales', 'POST',$this->saleArray);
         $sale = new Sales();
         $response = $sale->create($request);
-        dump($this->newSaleArray);
         $this->assertEquals(302, $response->getStatusCode());  // quando criado, ha o redirecionamento da venda
 
     }
@@ -78,5 +77,13 @@ class SalesController extends TestCase
         $this->assertDatabaseHas('client_products', $this->newSaleArray);
         $this->assertEquals(302, $response->getStatusCode());  
     }
+
+    public function test_get_sales_betwen_dates_working_corretly(){
+        Event::fake();
+        $admin = Users::factory(1)->create()->first();
+        $this->actingAs($admin)->withSession(['user_id' => '1', 'role_id' => '1']);
+
+    }
+    
 
 }

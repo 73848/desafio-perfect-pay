@@ -95,7 +95,6 @@ class ProductUpdate extends TestCase
         $product_controler = new ProductController();
         $response = $product_controler->get_products_data(1);
         $this->assertJson($response);
-        dump($response);
         
     }
 }

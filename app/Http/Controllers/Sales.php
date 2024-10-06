@@ -112,7 +112,7 @@ class Sales extends Controller
         $products = get_products_data();
         $sales = $this->get_sales_betwen_dates($initialDate, $finalDate);
         
-        return view('dashboard', ['sales' => $sales, 'products' => $products]);
+        return view('dashboard', compact('products','sales', ))->with(['message','Resultados encontrados']);
     }
 
    public function get_sales_data($id = false, $paginate = 10)
@@ -150,7 +150,7 @@ function get_sales_betwen_dates($initialDate, $finalDate)
             'products.name as products_name',
             'products.price as products_price'
         )->get();
-    return $sales;
+    return json_encode($sales);
 }
 function aplicacao_banco_de_dados_($date_from_app)
 {
@@ -175,4 +175,5 @@ function salesPrice($quantity, $discount, $priceProduct){
     $salePrice = ($quantity*$priceProduct)-$discount;
     return  $salePrice;
 }
+
 }
