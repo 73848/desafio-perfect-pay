@@ -86,4 +86,16 @@ class ProductUpdate extends TestCase
         $this->assertJson($response);
         
     }
+    
+    public function test_get_one_product_data_return_json_corretyl(){
+        Event::fake();
+        $admin = Users::factory()->create();
+        $this->actingAs($admin)->withSession(['role_id' => '1', 'user_id' => '7']);
+       
+        $product_controler = new ProductController();
+        $response = $product_controler->get_products_data(1);
+        $this->assertJson($response);
+        dump($response);
+        
+    }
 }

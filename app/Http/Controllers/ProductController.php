@@ -73,7 +73,7 @@ function get_products_data($id=false)
     if($id){
         $products = DB::table('products')->where('id', $id)->get();
     }else{
-        $products = DB::table('products')->orderBy('name')->get();
+        $products = DB::table('products')->orderBy('name')->paginate(10);
     }
     return json_encode($products);
 }
