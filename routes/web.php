@@ -55,7 +55,7 @@ Route::controller(Sales::class)->group(function (){
         });
     Route::post('/sales', 'create')->name('create.sale');
     Route::get('/search',  'search')->name('search.sales');
-    Route::get('/searchWithDate', 'searchWithDate');
+    Route::get('/searchWithDate', 'searchWithDate')->name('searchDate.sales');
     });
 });
 

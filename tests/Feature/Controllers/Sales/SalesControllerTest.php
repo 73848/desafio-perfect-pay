@@ -6,6 +6,7 @@ use App\Http\Controllers\Sales;
 use App\Models\Client;
 use App\Models\Product;
 use App\Models\Users;
+use DateTime;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\Request;
 use Tests\TestCase;
@@ -78,11 +79,17 @@ class SalesController extends TestCase
         $this->assertEquals(302, $response->getStatusCode());  
     }
 
-    public function test_get_sales_betwen_dates_working_corretly(){
+    public function test_get_sales_betwen_dates_are_return_json_corretly(){
         Event::fake();
         $admin = Users::factory(1)->create()->first();
         $this->actingAs($admin)->withSession(['user_id' => '1', 'role_id' => '1']);
 
+        $saleController = new Sales();
+        $currentDateTime = new DateTime('now');
+        $currentDate = $currentDateTime->format('Y-m-d');
+        $response = $saleController->get_sales_betwen_dates('2016-01-01', $currentDate);
+
+        $this->assertJson($response);
     }
     
 
